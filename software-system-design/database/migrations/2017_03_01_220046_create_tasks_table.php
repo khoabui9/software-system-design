@@ -20,9 +20,11 @@ class CreateTasksTable extends Migration
             $table->DATETIME('date_created');
             $table->DATETIME('date_ended');
             //$table->primary('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users'); 
             $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects'); 
-            $table->timestamps();
+             $table->timestamps();
         });
     }
 
