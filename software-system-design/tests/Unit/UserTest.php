@@ -29,11 +29,13 @@ class UserTest extends TestCase
         $project = new projects();
         $project->name = 'project4';
         $project->description = 'this is project4';
-        $project->user_id = 1;
-        //$project->name = 'project4';
+        $project->user_id = 2;
         //$project->user()->associate($user);
+        //$user->project->save($project);
         $project->save();
        
+       $this->assertEquals(2, $project->user_id);
+
         $project->delete();
         $user->delete();
     }

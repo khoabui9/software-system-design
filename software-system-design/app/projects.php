@@ -8,6 +8,6 @@ class projects extends Model
 {
     //
     public function user() {
-        return $this -> belongsToMany('App\users');
+        return $this -> belongsToMany('App\users', 'user_id');
     }
 }

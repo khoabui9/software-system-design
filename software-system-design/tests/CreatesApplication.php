@@ -19,4 +19,14 @@ trait CreatesApplication
 
         return $app;
     }
+// public function setUp() {
+//         parrent::setUp();
+//         $this->prepareForTests();
+//     }
+
+//     private function prepareForTests() {
+//         Artisan::call('migrate');
+//         Mail::pretend(true);
+//     }
+
 }
