@@ -1,0 +1,60 @@
+body {
+	overflow-x: hidden;
+	top: 0;
+	margin: 0;
+	padding: 0
+}
+.header {
+	height: 80px;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.app-name {
+	font-size: 30px;
+	color: white;
+}
+.something {
+	background-color: #963019;
+	height: 10px;
+	top: 0;
+}
+.dashboard {
+	padding-top: 10px;
+	margin-bottom: 20px;
+}
+.dashboard-left {
+	height: 100px;
+	float: left;
+	border: 2px solid lightgrey;
+	border-radius: 10px;
+}
+
+.dashboard-right {
+	height: 250px;
+	float: right;
+	
+}
+h2 {
+	font-size: 30px;
+}
+.menu-list {
+	font-size: 20px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+td, th {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
