@@ -17,6 +17,7 @@
     </div>
 </div>
 </div>
+
 <div class="lightbox_outer">
       <div class="lightbox_inner col-sm-5">
         <a class="close">X</a>
