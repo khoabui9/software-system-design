@@ -24,7 +24,7 @@ body {
 }
 .lightbox_inner {
     margin-top: 5%;
-    height: 80%;
+    height: 480px;
     width: 35%;
     background-color: white;
     border-radius: 15px;
@@ -45,7 +45,7 @@ form {
      justify-content: center;
      align-content: center;
  }
-.project_container {
+._container {
     margin-bottom: 20px;
 }
 

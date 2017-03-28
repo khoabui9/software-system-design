@@ -13,8 +13,9 @@
 
 Route::get('/', 'MainController@index');
 Route::get('/projects', 'ProjectsController@show');
-
+Route::get('/tasks', 'TasksController@show');
 Route::post('/create', 'ProjectsController@create');
+Route::post('/createtask', 'TasksController@create');
 Route::get('/project/delete/{id}', 'ProjectsController@delete');
 Route::get('/project/{id}', 'ProjectsController@showOne');
 

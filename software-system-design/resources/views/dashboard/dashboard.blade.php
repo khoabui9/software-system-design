@@ -30,7 +30,7 @@
                         <tr>
 					    <td><a href="#">{{{ $task->name }}}</a></td>
 					    <td>{{{ $task->date_created }}}</td>
-					    <td>{{{ $task->date_ended }}}</td>
+					    <td class="danger">{{{ $task->date_ended }}}</td>
 					  </tr>
                       @endforeach
                 </table>

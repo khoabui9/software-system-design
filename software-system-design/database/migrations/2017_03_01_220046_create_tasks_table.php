@@ -17,10 +17,10 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('description');
-            $table->DATETIME('date_created');
-            $table->DATETIME('date_ended');
+            $table->DATETIME('date_created')->nullable();
+            $table->DATETIME('date_ended')->nullable();
             //$table->primary('id');
-             $table->timestamps();
+            $table->timestamps();
         });
     }
 

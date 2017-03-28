@@ -2,7 +2,7 @@ body {
 	overflow-x: hidden;
 	top: 0;
 	margin: 0;
-	padding: 0
+	padding: 0;
 }
 .header {
 	height: 80px;
@@ -27,16 +27,10 @@ body {
 }
 .dashboard-left {
 	height: 100px;
-	float: left;
 	border: 2px solid lightgrey;
 	border-radius: 10px;
 }
 
-.dashboard-right {
-	height: 250px;
-	float: right;
-	
-}
 h2 {
 	font-size: 30px;
 }
@@ -57,4 +51,8 @@ td, th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+.danger {
+	color:red;
 }

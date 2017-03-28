@@ -5,5 +5,6 @@ $(document).ready(function() {
     $('.close').click(function(){
           $('.lightbox_outer').css('display', 'none');
     });
-   
 });
+
+

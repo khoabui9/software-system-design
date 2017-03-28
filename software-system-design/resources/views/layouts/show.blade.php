@@ -27,7 +27,7 @@
       <ul class="nav navbar-nav">
         <li class=""><a href="/">Dashboard</a></li>
         <li><a href="/projects">Projects</a></li>
-        <li><a href="#">Tasks</a></li>
+        <li><a href="/tasks">Tasks</a></li>
       </ul>
     </div>
   </div>

@@ -21,7 +21,7 @@ class ProjectsController extends Controller
 
     public function create(Request $request) {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:projects',
             'description' => 'required'
         ]);
 

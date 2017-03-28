@@ -9,6 +9,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
   <link rel="stylesheet" type="text/css" href="{{ asset('css/project.css') }}"/>
    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"/>
+   <link rel="stylesheet" type="text/css" href="{{ asset('css/task.css') }}"/>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   </head>
   <body data-gr-c-s-loaded="true">
   <div class="row">
@@ -27,7 +29,7 @@
       <ul class="nav navbar-nav">
         <li class=""><a href="/">Dashboard</a></li>
         <li><a href="projects">Projects</a></li>
-        <li><a href="#">Tasks</a></li>
+        <li><a href="tasks">Tasks</a></li>
       </ul>
     </div>
   </div>
@@ -37,52 +39,12 @@
 </div>
 
     <div class="container">
-     <h1>Projects</h1>
-     <hr>
-     <a class="create">Create new project</a>
-     <hr>
      <div class="row">
-        <div class="project_container col-sm-12">
+        <div class="_container col-sm-12">
           @yield('content')
         </div>
     </div>
-       <div class="lightbox_outer">
-      <div class="lightbox_inner">
-        <a class="close">X</a>
-        <br>
-        
-            {!! Form::open([
-                'url' => '/create'
-            ]) !!}
-               @if($errors->any())
-                <div class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach
-                </div>
-            @endif
-              @if(Session::has('flash_message'))
-                <div class="alert alert-success">
-                    {{ Session::get('flash_message') }}
-                </div>
-            @endif
-            <div class="form-group">
-                {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
-                {!! Form::text('name', null, ['class' => 'form-control']) !!}
-            </div>
-
-            <div class="form-group">
-                {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
-                <br>
-                {!! Form::textarea('description', null ,['class' => 'form-control', 'size' => '50x5']) !!}
-            </div>
-
-            {!! Form::submit('Create New Project', ['class' => 'btn btn-primary']) !!}
-          
-            {!! Form::close() !!}
-        
-      </div>
-    </div>
+       
     </div><!-- /.container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -92,4 +54,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="{{asset('js/main.js')}}"></script>
       <script src="{{asset('js/app.js')}}"></script>
-</body></html>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+     $( "#datepicker1" ).datepicker();
+  });
+  </script>
+</body>
+</html>

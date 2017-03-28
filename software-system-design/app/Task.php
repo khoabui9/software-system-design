@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+        protected $fillable = [
+        'name',
+        'description',
+        'date_created',
+        'date_ended'
+        ];
     //
     public function user() {
         return $this->belongsToMany('App\User', 'user_task', 
