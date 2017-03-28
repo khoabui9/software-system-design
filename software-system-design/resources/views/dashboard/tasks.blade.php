@@ -29,6 +29,7 @@
                     @foreach($errors->all() as $error)
                         <p>{{ $error }}</p>
                     @endforeach
+    
                 </div>
             @endif
               @if(Session::has('flash_message'))
