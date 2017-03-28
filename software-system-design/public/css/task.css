@@ -1,0 +1,18 @@
+.task_container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.task_inner {
+    background-color: transparent;
+    overflow-y: visible;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.task {
+    border-right: none;
+    border-left: none;
+    background-color: transparent;
+}
