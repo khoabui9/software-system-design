@@ -10,7 +10,9 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/project.css') }}"/>
    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"/>
    <link rel="stylesheet" type="text/css" href="{{ asset('css/task.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts/glyphicons-halflings-regular.eot') }}"/>
    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body data-gr-c-s-loaded="true">
   <div class="row">
