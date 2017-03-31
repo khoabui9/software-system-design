@@ -30,7 +30,7 @@ class ProjectsController extends Controller
         Project::create($project);
 
         Session::flash('flash_message', 'Task successfully added!');
-        return redirect()->back();
+        return redirect()->action('ProjectsController@show');
     }
     public function delete($id) {
         $p = Project::findOrFail($id);

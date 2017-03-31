@@ -39,7 +39,16 @@ class TasksController extends Controller
 
         return redirect()->action('TasksController@show');
     }
-    public function update() {
+    public function update($id, Request $request)
+    {
+    $task = Task::findOrFail($id);
 
+    $input = $request->all();
+
+    $task->fill($input)->save();
+
+    Session::flash('flash_message', 'Task successfully updated!');
+
+     return redirect()->action('TasksController@show');
     }
 }
