@@ -3,6 +3,20 @@
 <h1>Projects</h1>
      <hr>
      <a class="create">Create new project</a>
+     @if($errors->any())
+                <div class="alert alert-danger">
+                <a><span class="close_alert pull-right btn btn-danger">X</span></a>
+                    @foreach($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
+              @if(Session::has('flash_message'))
+                <div class="alert alert-success">
+                    {{ Session::get('flash_message') }}
+                    <a><span class="close_alert pull-right btn btn-danger"></span></a>
+                </div>
+            @endif
      <hr>
       @foreach($projects as $project)
   <div class="col-sm-4">
@@ -23,18 +37,7 @@
             {!! Form::open([
                 'url' => '/create'
             ]) !!}
-               @if($errors->any())
-                <div class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach
-                </div>
-            @endif
-              @if(Session::has('flash_message'))
-                <div class="alert alert-success">
-                    {{ Session::get('flash_message') }}
-                </div>
-            @endif
+               
             <div class="form-group">
                 {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}

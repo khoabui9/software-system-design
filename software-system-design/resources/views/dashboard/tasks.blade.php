@@ -3,33 +3,37 @@
 <h1>Tasks</h1>
      <hr>
      <a class="create">Create new task</a>
+      @if($errors->any())
+                <div class="alert alert-danger">
+                 <a><span class="close_alert pull-right btn btn-danger">X</span></a>
+                    @foreach($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
+     @if(Session::has('flash_message'))
+                <div class="alert alert-success">
+                    {{ Session::get('flash_message') }}
+                <a><span class="close_alert pull-right btn btn-danger">X</span></a>
+                </div>
+     @endif
      <hr>
      <div class="task_container col-sm-12">
      <div class="task_inner">
     <div >
     <ul  class="taskList">
+    
       @foreach($tasks as $task)   
    <li class="taskItem">
+   
           <span class="title complete">{{ $task->name }}</span> 
           <br>
            <span class="complete">{{ $task->description }}</span> 
           <strong class="taskDate"><i class="fa fa-calendar"></i>{{ $task->date_ended }}</strong>
           <span class="edit edit{{$task->id}}">
              {!! Form::open([
-                'url' => '/createtask'
+                'url' => '/updatetask/'.$task->id
             ]) !!}
-               @if($errors->any())
-                <div class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach
-                </div>
-            @endif
-              @if(Session::has('flash_message'))
-                <div class="alert alert-success">
-                    {{ Session::get('flash_message') }}
-                </div>
-            @endif
             <div class="form-group">
                 {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
                 {!! Form::text('name', $task->name, ['class' => 'form-control']) !!}
@@ -52,7 +56,7 @@
           </span>
           <span class="pull-right">
               <button id='{{$task->id}}' class="open_edit btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>
-              <button id='{{$task->id}}' class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" ></span></button>
+              <a href="/task/delete/{{{ $task->id }}}" id='{{$task->id}}' class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" ></span></a>
         </span>
     </li>
       @endforeach
@@ -66,18 +70,6 @@
             {!! Form::open([
                 'url' => '/createtask'
             ]) !!}
-               @if($errors->any())
-                <div class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach
-                </div>
-            @endif
-              @if(Session::has('flash_message'))
-                <div class="alert alert-success">
-                    {{ Session::get('flash_message') }}
-                </div>
-            @endif
             <div class="form-group">
                 {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
