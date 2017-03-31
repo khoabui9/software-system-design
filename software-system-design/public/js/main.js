@@ -16,6 +16,10 @@ $(document).ready(function() {
            var edit = '.edit' + id.toString();
         $(edit).css('display', 'none');
     });
+
+    $('.close_alert').click(function() {
+        $('.alert').css('display', 'none');
+    });
 });
 
 
