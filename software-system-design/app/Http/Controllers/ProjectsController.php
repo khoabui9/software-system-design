@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Project;
 use Session;
 
 class ProjectsController extends Controller
 {
     public function show(){
-            $projects = Project::all();
+            $projects =  DB::table('projects')->paginate(9);
             return view('dashboard.projects')->with('projects', $projects);
     }
 
