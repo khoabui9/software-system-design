@@ -3,6 +3,7 @@
 <h1>Projects</h1>
      <hr>
      <a class="create">Create new project</a>
+     <a href="sort" class="sort">Sort by date</a>
      @if($errors->any())
                 <div class="alert alert-danger">
                 <a><span class="close_alert pull-right btn btn-danger">X</span></a>
@@ -38,6 +39,7 @@
         <a class="close">X</a>
         <br>
             {!! Form::open([
+                'method' => 'POST',
                 'url' => '/create'
             ]) !!}
                

@@ -43,11 +43,18 @@
     <div class="container">
      <div class="row">
         <div class="_container col-sm-12">
+          
           @yield('content')
+         
         </div>
     </div>
        
-    </div><!-- /.container -->
+    </div>
+    <div class="row">
+    <div class="col-sm-12">
+      <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top pull-right" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a><!-- /.container -->
+    </div>
+    </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -60,7 +67,9 @@
   <script>
   $(function() {
     $( "#datepicker" ).datepicker();
-     $( "#datepicker1" ).datepicker();
+    $( "#datepicker1" ).datepicker();
+    $( "#datepicker2" ).datepicker();
+    $( "#datepicker3" ).datepicker();
   });
   </script>
 </body>
