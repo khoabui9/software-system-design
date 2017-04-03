@@ -20,6 +20,7 @@ Route::post('/create', 'ProjectsController@create');
 Route::post('/createtask', 'TasksController@create');
 Route::get('/project/delete/{id}', 'ProjectsController@delete');
 Route::get('/project/{id}', 'ProjectsController@showOne');
+Route::get('/sort', 'ProjectsController@sort');
 
 // Route::get('/', 'TasksController@showTasks');
 // Route::get('/ProjectsList', function () {
