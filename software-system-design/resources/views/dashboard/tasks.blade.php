@@ -32,8 +32,8 @@
           <strong class="taskDate"><i class="fa fa-calendar"></i>{{ $task->date_ended }}</strong>
           <span class="edit edit{{$task->id}}">
              {!! Form::open([
-                'url' => '/task/update/'.$task->id
-                'method' => 'POST',
+                'url' => '/task/update/'.$task->id,
+                'method' => 'POST'
             ]) !!}
             <div class="form-group">
                 {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
