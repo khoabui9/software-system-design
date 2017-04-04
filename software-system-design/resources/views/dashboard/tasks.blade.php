@@ -33,6 +33,7 @@
           <span class="edit edit{{$task->id}}">
              {!! Form::open([
                 'url' => '/task/update/'.$task->id
+                'method' => 'POST',
             ]) !!}
             <div class="form-group">
                 {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
@@ -64,7 +65,7 @@
 </div>
 </div>
 <div class="lightbox_outer">
-      <div class="lightbox_inner col-sm-5">
+      <div class="lightbox_inner">
         <a class="close">X</a>
         <br>
             {!! Form::open([
@@ -76,9 +77,9 @@
             </div>
             <div class="form-group">
                 {!! Form::label('start', 'Start:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_created', null, array('id' => 'datepicker')) !!}
+                {!! Form::text('date_created', null, array('id' => 'datepicker2')) !!}
                 {!! Form::label('end', 'End:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_ended', null, array('id' => 'datepicker1')) !!}
+                {!! Form::text('date_ended', null, array('id' => 'datepicker3')) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}

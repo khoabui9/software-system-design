@@ -19,6 +19,8 @@ Route::get('/project/{id}', 'ProjectsController@showOne');
 Route::get('/project/delete/{id}', 'ProjectsController@delete');
 Route::post('/project/create', 'ProjectsController@create');
 Route::post('/project/update/{id}', 'ProjectsController@update');
+Route::get('/sort', 'ProjectsController@sort');
+
 
 Route::get('/tasks', 'TasksController@show');
 Route::get('/task/delete/{id}', 'TasksController@delete');
@@ -29,8 +31,6 @@ Route::get('/users', 'UsersController@show');
 Route::get('/user/delete/{email}', 'UsersController@delete');
 Route::post('/user/create', 'UsersController@create');
 Route::post('/user/update/{email}', 'UsersController@update');
-
-
 
 // Route::get('/', 'TasksController@showTasks');
 // Route::get('/ProjectsList', function () {

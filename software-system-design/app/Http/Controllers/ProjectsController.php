@@ -48,4 +48,9 @@ class ProjectsController extends Controller
 
         return redirect()->action('ProjectsController@show');
     }
+
+    public function sort() {
+        $projects = Project::orderBy('created_at','desc')->paginate(9);
+        return view('dashboard.projects')->with('projects', $projects);
+    }
 }
