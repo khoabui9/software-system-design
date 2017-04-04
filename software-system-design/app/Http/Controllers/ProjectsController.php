@@ -16,8 +16,23 @@ class ProjectsController extends Controller
 
     public function showOne($id) {
         $project = Project::findOrFail($id);
-
-        return view('show.project')->withProject($project);
+        $users = DB::table('user_project')
+        ->where('project_id', '=', $id)
+        ->join('users', 'users.id', '=', 'user_id')
+        ->select('users.*')
+        ->get();
+        return view('show.project')->withProject($project)
+        ->with('users', $users);;
+    }
+        public function showEdit($id) {
+        $project = Project::findOrFail($id);
+        $users = DB::table('user_project')
+        ->where('project_id', '=', $id)
+        ->join('users', 'users.id', '=', 'user_id')
+        ->select('users.*')
+        ->get();
+        return view('show.projectEdit')->withProject($project)
+        ->with('users', $users);
     }
 
     public function create(Request $request) {

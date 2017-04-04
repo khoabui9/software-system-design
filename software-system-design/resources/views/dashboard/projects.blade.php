@@ -40,7 +40,7 @@
         <br>
             {!! Form::open([
                 'method' => 'POST',
-                'url' => '/create'
+                'url' => '/project/create'
             ]) !!}
                
             <div class="form-group">
