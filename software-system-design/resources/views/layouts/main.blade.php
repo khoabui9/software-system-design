@@ -23,8 +23,9 @@
 			<div class="dashboard-left col-sm-3">
 				<ul class="menu-list">
 				  <a href="#"><li>Dashboard</li></a>
-				  <a href="projects"><li>My projects</li></a>
-				  <a href="tasks"><li>My tasks</li></a>
+				  <a href="projects"><li>Projects</li></a>
+				  <a href="tasks"><li>Tasks</li></a>
+				  <a href="users"><li>Users</li></a>
 				</ul> 
 			</div>
 			<div class="dashboard-right col-sm-9">
