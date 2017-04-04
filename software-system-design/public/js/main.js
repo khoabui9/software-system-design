@@ -2,12 +2,15 @@ $(document).ready(function() {
     $('.create').click(function() {
         $('.lightbox_outer').css('display', 'flex');
     });
-        $('.edit').click(function() {
+
+    $('.edit_project').click(function() {
         $('.lightbox_outer').css('display', 'flex');
     });
+
     $('.close').click(function(){
           $('.lightbox_outer').css('display', 'none');
     });
+    
     $('.open_edit').click(function() {
         var id = $(this).attr('id');
         var edit = '.edit' + id.toString();
