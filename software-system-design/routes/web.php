@@ -12,14 +12,25 @@
 */
 
 Route::get('/', 'MainController@index');
+
+
 Route::get('/projects', 'ProjectsController@show');
+Route::get('/project/{id}', 'ProjectsController@showOne');
+Route::get('/project/delete/{id}', 'ProjectsController@delete');
+Route::post('/project/create', 'ProjectsController@create');
+Route::post('/project/update/{id}', 'ProjectsController@update');
+
 Route::get('/tasks', 'TasksController@show');
 Route::get('/task/delete/{id}', 'TasksController@delete');
-Route::post('/updatetask/{id}', 'TasksController@update');
-Route::post('/create', 'ProjectsController@create');
-Route::post('/createtask', 'TasksController@create');
-Route::get('/project/delete/{id}', 'ProjectsController@delete');
-Route::get('/project/{id}', 'ProjectsController@showOne');
+Route::post('/task/create', 'TasksController@create');
+Route::post('/task/update/{id}', 'TasksController@update');
+
+Route::get('/users', 'UsersController@show');
+Route::get('/user/delete/{email}', 'UsersController@delete');
+Route::post('/user/create', 'UsersController@create');
+Route::post('/user/update/{email}', 'UsersController@update');
+
+
 
 // Route::get('/', 'TasksController@showTasks');
 // Route::get('/ProjectsList', function () {

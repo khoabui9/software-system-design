@@ -33,14 +33,19 @@ class ProjectsController extends Controller
         Session::flash('flash_message', 'Task successfully added!');
         return redirect()->action('ProjectsController@show');
     }
+        public function update(Request $request, $id) {
+        $p = Project::findOrFail($id);
+        $input = $request->all();
+        $p->fill($input)->save();
+        Session::flash('flash_message', 'Project successfully updated!');
+        return redirect()->back();
+
+    }
     public function delete($id) {
         $p = Project::findOrFail($id);
 
         $p->delete();
 
         return redirect()->action('ProjectsController@show');
-    }
-    public function update() {
-
     }
 }

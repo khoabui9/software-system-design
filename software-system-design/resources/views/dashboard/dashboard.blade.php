@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-        <h2 class="project-list">My projects</h2>
+        <h2 class="project-list">Projects</h2>
 			<hr>
 				<table>
 					  <tr>
@@ -18,7 +18,7 @@
                       @endforeach
                 </table>
 
-          <h2 class="project-list">My Tasks</h2>
+          <h2 class="project-list">Tasks</h2>
 			<hr>
 				<table>
 					  <tr>
