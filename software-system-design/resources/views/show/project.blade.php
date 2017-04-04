@@ -5,7 +5,7 @@
         <hr>
 
         <a href="/projects" class="btn btn-info">Back</a>
-        <a href="#" class="edit btn btn-primary">Edit</a>
+        <a href="#" class="edit_project btn btn-primary">Edit</a>
 <div class="lightbox_outer">
       <div class="lightbox_inner">
         <a class="close">X</a>
