@@ -21,7 +21,7 @@ $(document).ready(function() {
         $('.alert').css('display', 'none');
     });
     $(window).scroll(function () {
-            if ($(this).scrollTop() > 50) {
+            if ($(this).scrollTop() > 150) {
                 $('#back-to-top').fadeIn();
             } else {
                 $('#back-to-top').fadeOut();

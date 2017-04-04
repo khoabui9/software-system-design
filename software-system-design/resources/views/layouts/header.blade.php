@@ -43,10 +43,8 @@
     <div class="container">
      <div class="row">
         <div class="_container col-sm-12">
-          
           @yield('content')
-         
-        </div>
+      </div>
     </div>
        
     </div>

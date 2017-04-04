@@ -59,9 +59,9 @@ tr:nth-child(even) {
 .back-to-top {
     cursor: pointer;
     position: fixed;
-    bottom: 20px;
+	margin-bottom: 20px;
+	margin-right: 10px;
     display:none;
-	float: right;
 }
 .justify {
 	display: flex;
