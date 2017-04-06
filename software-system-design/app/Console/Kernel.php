@@ -9,6 +9,8 @@ class Kernel extends ConsoleKernel
 {
   $a = 13;
   $b = 14;
+  $c = 15;
+  $d = 20;
   //////
     /**
      * The Artisan commands provided by your application.
