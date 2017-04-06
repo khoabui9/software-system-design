@@ -7,12 +7,15 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+  $a = 13;
+  $b = 14;
+  //////
     /**
      * The Artisan commands provided by your application.
      *
      * @var array
      */
-    protected $commands = [
+    protected $commands = [////////
         //
     ];
 
@@ -26,7 +29,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-    }
+    }//////////
 
     /**
      * Register the Closure based commands for the application.
@@ -34,7 +37,7 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function commands()
-    {
-        require base_path('routes/console.php');
+    {////////
+        require base_path('routes/console.php');//////////
     }
 }
