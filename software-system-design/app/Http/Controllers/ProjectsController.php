@@ -65,7 +65,14 @@ class ProjectsController extends Controller
     }
 
     public function sort() {
-        $projects = Project::orderBy('created_at','desc')->paginate(9);
+        $sortby = Input::get('sortby');
+        if ($sortby == 'date')
+            $projects =  DB::table('projects')->orderBy('created_at','desc')->paginate(9);
+        else if ($sortby == 'name')
+            $projects = DB::table('projects')->orderBy('name','asc')->paginate(9);
+        else if ($sortby == 'default')
+            $projects =  DB::table('projects')->paginate(9);
         return view('dashboard.projects')->with('projects', $projects);
+        //return response(view('dashboard.projects',array('projects'=>$projects)),200, ['Content-Type' => 'application/json']);
     }
 }
