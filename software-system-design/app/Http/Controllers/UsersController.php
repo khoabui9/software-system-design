@@ -8,11 +8,6 @@ use Session;
 
 class UsersController extends Controller
 {
-     public function show(){
-            $users = User::all();
-            return view('dashboard.users')->with('users', $users);
-    }
-
     public function create(Request $request) {
         $this->validate($request, [
             'email' => 'required|unique:users',
@@ -26,6 +21,15 @@ class UsersController extends Controller
         Session::flash('flash_message', 'User successfully added!');
         return redirect()->back();
     }
+         public function update($email, Request $request)
+    {    
+    $user = User::findOrFail($email);
+    $input = $request->all();
+    $user->fill($input)->save();
+    Session::flash('flash_message', 'User successfully updated!');
+    return redirect()->action('UsersController@show');
+    }
+     
     public function delete($email) {
         $u = User::findOrFail($email);
 
@@ -33,12 +37,9 @@ class UsersController extends Controller
         Session::flash('flash_message', 'User successfully deleted!');
         return redirect()->action('UsersController@show');
     }
-    public function update($email, Request $request)
-    {    
-    $user = User::findOrFail($email);
-    $input = $request->all();
-    $user->fill($input)->save();
-    Session::flash('flash_message', 'User successfully updated!');
-    return redirect()->action('UsersController@show');
+
+          public function show(){
+            $users = User::all();
+            return view('dashboard.users')->with('users', $users);
     }
 }
