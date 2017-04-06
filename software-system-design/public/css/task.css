@@ -1,36 +1,9 @@
-
-.taskList .taskItem:nth-child(even) { background: #fcfcfc; }
-.taskCheckbox { margin-right: 1em; }
-.complete-true {
-  text-decoration: line-through;
-  color: #bebebe;
-}
-
-.task_container {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
-
 .task_inner {
     background-color: transparent;
     overflow-y: visible;
     padding: 10px;
     border-radius: 5px;
     width: 90%;
-}
-
-.taskList {
-  list-style: none;
-}
- 
-.taskItem {
-  border-top: 1px solid #e5e5e5;
-  padding: 25px 0;
-  color: #777;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.5px;
 }
 
 .taskList .taskDate {
@@ -41,15 +14,42 @@
   display: block;
 }
 
+.taskList .taskItem:nth-child(even) { background: #fcfcfc; }
+.taskCheckbox { margin-right: 1em; }
+.complete-true {
+  text-decoration: line-through;
+  color: #bebebe;
+}
+
+.taskItem {
+  border-top: 1px solid #e5e5e5;
+  padding: 25px 0;
+  color: #777;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.taskList {
+  list-style: none;
+}
+
+.task_container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 .fa-calendar {
   margin-right: 10px;
   font-size: 16px;
 }
 
-.title {
-    font-size: 20px;
-}
-
 .edit {
     display: none;
+}
+
+
+.title {
+    font-size: 20px;
 }
