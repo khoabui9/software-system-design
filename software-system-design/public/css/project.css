@@ -4,6 +4,26 @@ body {
 	margin: 0;
 	padding: 0
 }
+
+._container {
+    margin-bottom: 20px;
+}
+
+.close {
+     height: 25px;
+     width: 25px;
+     border-radius: 10px;
+     border: 2px solid black;
+     background-color: black;
+     display: flex;
+     justify-content: center;
+     align-content: center;
+ }
+
+form {
+    padding: 15px;
+}
+ 
 .lightbox_outer {
     display: none;
     margin: 0;
@@ -17,11 +37,7 @@ body {
     justify-content: center;
    
 }
-.something {
-	background-color: #963019;
-	height: 10px;
-	top: 0;
-}
+
 .lightbox_inner {
     margin-top: 5%;
     height: 450px;
@@ -31,22 +47,14 @@ body {
     -moz-box-shadow: 0px 2px 13px -2px rgba(0,0,0,0.75);
     box-shadow: 0px 2px 13px -2px rgba(0,0,0,0.75);
 }
-form {
-    padding: 15px;
+
+.something {
+	background-color: #963019;
+	height: 10px;
+	top: 0;
 }
- .close {
-     height: 25px;
-     width: 25px;
-     border-radius: 10px;
-     border: 2px solid black;
-     background-color: black;
-     display: flex;
-     justify-content: center;
-     align-content: center;
- }
-._container {
-    margin-bottom: 20px;
-}
+
+
 .sort {
     float: right;
 }
