@@ -18,7 +18,27 @@ class TasksController extends Controller
 
         //return view('show.project')->withProject($project);
     }
+     public function update($id, Request $request)
+    {
+    $task = Task::findOrFail($id);
 
+    $input = $request->all();
+
+    $task->fill($input)->save();
+
+    Session::flash('flash_message', 'Task successfully updated!');
+
+     return redirect()->action('TasksController@show');
+    }  
+     
+    public function delete($id) {
+        $t = Task::findOrFail($id);
+
+        $t->delete();
+
+        return redirect()->action('TasksController@show');
+    }
+     
     public function create(Request $request) {
         $this->validate($request, [
             'name' => 'required|unique:tasks',
@@ -31,24 +51,5 @@ class TasksController extends Controller
 
         Session::flash('flash_message', 'Task successfully added!');
         return redirect()->back();
-    }
-    public function delete($id) {
-        $t = Task::findOrFail($id);
-
-        $t->delete();
-
-        return redirect()->action('TasksController@show');
-    }
-    public function update($id, Request $request)
-    {
-    $task = Task::findOrFail($id);
-
-    $input = $request->all();
-
-    $task->fill($input)->save();
-
-    Session::flash('flash_message', 'Task successfully updated!');
-
-     return redirect()->action('TasksController@show');
     }
 }
