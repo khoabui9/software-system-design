@@ -1,3 +1,11 @@
+
+.taskList .taskItem:nth-child(even) { background: #fcfcfc; }
+.taskCheckbox { margin-right: 1em; }
+.complete-true {
+  text-decoration: line-through;
+  color: #bebebe;
+}
+
 .task_container {
     display: flex;
     justify-content: center;
@@ -25,12 +33,6 @@
   letter-spacing: 0.5px;
 }
 
-.taskList .taskItem:nth-child(even) { background: #fcfcfc; }
-.taskCheckbox { margin-right: 1em; }
-.complete-true {
-  text-decoration: line-through;
-  color: #bebebe;
-}
 .taskList .taskDate {
   color: #95a5a6;
   font-size: 10px;
@@ -38,13 +40,16 @@
   text-transform: uppercase;
   display: block;
 }
+
 .fa-calendar {
   margin-right: 10px;
   font-size: 16px;
 }
+
 .title {
     font-size: 20px;
 }
+
 .edit {
     display: none;
 }
