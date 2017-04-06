@@ -55,13 +55,13 @@ tr:nth-child(even) {
 .danger {
 	color:red;
 }
-.back-to-top {
+/*.back-to-top {
     cursor: pointer;
     position: fixed;
 	margin-bottom: 20px;
 	margin-right: 10px;
     display:none;
-}
+}*/
 .justify {
 	display: flex;
 	justify-content: center;
