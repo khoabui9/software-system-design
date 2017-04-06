@@ -11,10 +11,12 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+//////
 
 .app-name {
 	font-size: 30px;
 	color: white;
+
 }
 .something {
 	background-color: #963019;
