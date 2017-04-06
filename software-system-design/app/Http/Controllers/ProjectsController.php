@@ -10,21 +10,6 @@ use Session;
 
 class ProjectsController extends Controller
 {
-    public function show(){
-            $projects =  DB::table('projects')->paginate(9);
-            return view('dashboard.projects')->with('projects', $projects);
-    }
-
-    public function showOne($id) {
-        $project = Project::findOrFail($id);
-        $users = DB::table('user_project')
-        ->where('project_id', '=', $id)
-        ->join('users', 'users.id', '=', 'user_id')
-        ->select('users.*')
-        ->get();
-        return view('show.project')->withProject($project)
-        ->with('users', $users);
-    }
         public function showEdit($id) {
         $project = Project::findOrFail($id);
         $users = DB::table('user_project')
@@ -49,23 +34,20 @@ class ProjectsController extends Controller
         Session::flash('flash_message', 'Task successfully added!');
         return redirect()->action('ProjectsController@show');
     }
-        public function update(Request $request, $id) {
-        $p = Project::findOrFail($id);
-        $input = $request->all();
-        $p->fill($input)->save();
-        Session::flash('flash_message', 'Project successfully updated!');
-        return redirect()->back();
-
+    
+      public function show(){
+            $projects =  DB::table('projects')->paginate(9);
+            return view('dashboard.projects')->with('projects', $projects);
     }
-    public function delete($id) {
+        public function delete($id) {
         $p = Project::findOrFail($id);
 
         $p->delete();
 
         return redirect()->action('ProjectsController@show');
     }
-
-    public function sort() {
+    
+        public function sort() {
         $sortby = Input::get('sortby');
         if ($sortby == 'date')
             $projects =  DB::table('projects')->orderBy('created_at','desc')->paginate(9);
@@ -76,5 +58,24 @@ class ProjectsController extends Controller
 
         return view('dashboard.projects')->with('projects', $projects);
         //return response(view('dashboard.projects',array('projects'=>$projects)),200, ['Content-Type' => 'application/json']);
+    }
+    
+    public function showOne($id) {
+        $project = Project::findOrFail($id);
+        $users = DB::table('user_project')
+        ->where('project_id', '=', $id)
+        ->join('users', 'users.id', '=', 'user_id')
+        ->select('users.*')
+        ->get();
+        return view('show.project')->withProject($project)
+        ->with('users', $users);
+    }
+    
+        public function update(Request $request, $id) {
+            $p = Project::findOrFail($id);
+            $input = $request->all();
+            $p->fill($input)->save();
+            Session::flash('flash_message', 'Project successfully updated!');
+            return redirect()->back();
     }
 }
