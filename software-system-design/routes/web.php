@@ -13,15 +13,13 @@
 
 Route::get('/', 'MainController@index');
 
-
 Route::get('/projects', 'ProjectsController@show');
 Route::get('/project/showEdit/{id}', 'ProjectsController@showEdit');
 Route::get('/project/{id}', 'ProjectsController@showOne');
 Route::get('/project/delete/{id}', 'ProjectsController@delete');
 Route::post('/project/create', 'ProjectsController@create');
 Route::post('/project/update/{id}', 'ProjectsController@update');
-Route::get('/sort', 'ProjectsController@sort');
-
+Route::post('/sort', 'ProjectsController@sort');
 
 Route::get('/tasks', 'TasksController@show');
 Route::get('/task/delete/{id}', 'TasksController@delete');
