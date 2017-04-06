@@ -25,7 +25,6 @@
     
       @foreach($users as $user)   
    <li class="userItem">
-   
           <span class="title complete">{{ $user->name }}</span>
           <span>{{ $user->email }}</span> 
           <br>
@@ -59,7 +58,9 @@
                 'url' => '/user/create'
             ]) !!}
             <div class="form-group">
+                {!! Form::label('name', 'Name:', ['class' => 'control-label']) !!}
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                 {!! Form::label('email', 'Email:', ['class' => 'control-label']) !!}
                 {!! Form::text('email', null, ['class' => 'form-control']) !!}
             </div>
             {!! Form::submit('Create New user', ['class' => 'btn btn-primary']) !!}

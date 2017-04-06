@@ -3,7 +3,20 @@
 <h1>Projects</h1>
      <hr>
      <a class="create">Create new project</a>
-     <a href="sort" class="sort">Sort by date</a>
+     {!! Form::open([
+                'url' => 'sort'
+            ]) !!}
+     <!--<a href="sort" class="sort">Sort by date</a>-->
+      {!! Form::select('sortby', 
+            [
+                'default' => 'default',
+                'date' => 'date',
+                'name' => 'name',
+            ],
+      null, ['class' => 'form-control','id' => 'select', 'onchange' => 'this.form.submit()']) 
+      !!}
+
+    {!! Form::close() !!}
      @if($errors->any())
                 <div class="alert alert-danger">
                 <a><span class="close_alert pull-right btn btn-danger">X</span></a>
