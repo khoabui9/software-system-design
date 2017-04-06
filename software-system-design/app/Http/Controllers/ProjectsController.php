@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
 use App\Project;
 use Session;
 
@@ -23,7 +22,7 @@ class ProjectsController extends Controller
         ->select('users.*')
         ->get();
         return view('show.project')->withProject($project)
-        ->with('users', $users);
+        ->with('users', $users);;
     }
         public function showEdit($id) {
         $project = Project::findOrFail($id);
@@ -66,15 +65,7 @@ class ProjectsController extends Controller
     }
 
     public function sort() {
-        $sortby = Input::get('sortby');
-        if ($sortby == 'date')
-            $projects =  DB::table('projects')->orderBy('created_at','desc')->paginate(9);
-        else if ($sortby == 'name')
-            $projects = DB::table('projects')->orderBy('name','asc')->paginate(9);
-        else if ($sortby == 'default')
-            $projects =  DB::table('projects')->paginate(9);
-
+        $projects = Project::orderBy('created_at','desc')->paginate(9);
         return view('dashboard.projects')->with('projects', $projects);
-        //return response(view('dashboard.projects',array('projects'=>$projects)),200, ['Content-Type' => 'application/json']);
     }
 }
