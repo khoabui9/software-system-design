@@ -21,7 +21,7 @@ Route::get('/project/delete/{id}', 'ProjectsController@delete');
 Route::get('/project/removeUser/{id}/{email}', 'ProjectsController@removeUser');
 Route::post('/project/addUser/{id}', 'ProjectsController@addUser');
 Route::post('/project/create', 'ProjectsController@create');
-Route::post('/project/update/{id}', 'ProjectsContsroller@update');
+Route::post('/project/update/{id}', 'ProjectsController@update');
 Route::get('/sort', 'ProjectsController@sort');
 
 Route::get('/tasks', 'TasksController@show');
