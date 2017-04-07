@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use App\Project;
+use App\UserProject;
+
+
 use Session;
 
 class ProjectsController extends Controller
@@ -51,8 +54,14 @@ class ProjectsController extends Controller
         ->join('users', 'users.id', '=', 'user_id')
         ->select('users.*')
         ->get();
+        $allUsers = DB::table('users')
+        ->get();
+        $ids1 = $allUsers->pluck('id');
+        $ids2 = $users->pluck('id');
+        $restUsers = DB::table('users')->whereIn('id',$ids1)->whereNotIn('id',$ids2)->get();
         return view('show.project')->withProject($project)
-        ->with('users', $users);;
+        ->with('users', $users)
+        ->with('restUsers', $restUsers);
     }
 
 
@@ -66,6 +75,30 @@ class ProjectsController extends Controller
         return view('show.projectEdit')->withProject($project)
         ->with('users', $users);
     }
+
+    public function removeUser($id, $email) {
+        $userId=DB::table('users')
+        ->where('email', '=', $email)
+        ->select('id')
+        ->first();
+        $user = DB::table('user_project')
+        ->where('project_id', '=', $id)
+        ->where('user_id', '=', $userId->id)
+        ->delete();
+        return redirect()->back();
+        }
+    public function addUser(Request $request, $id) {
+        if($request->addUser==null)
+                return redirect()->back();
+        $userId=DB::table('users')
+        ->where('email', '=', $request->addUser)
+        ->select('id')->first();
+        DB::table('user_project')->insert(
+        [   'user_id' => $userId->id,
+            'project_id' => $id
+        ]);
+        return redirect()->back();
+        }
 
     public function sort() {
         $sortby = Input::get('sortby');

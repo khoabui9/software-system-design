@@ -32,12 +32,9 @@
                 {!! Form::textarea('description', $project->description ,['class' => 'form-control', 'size' => '50x5']) !!}
             </div>
             {!! Form::submit('Update project', ['class' => 'btn btn-primary']) !!}
+        
             <a href="/project/{{$project->id}}" id='{{$project->id}}' class="close_edit btn btn-danger btn-sm"><span class="" >cancel</span></a>
             {!! Form::close() !!}
             
           </span>
-          <span class="pull-right">
-              <button id='{{$project->id}}' class="open_edit btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>
-              <a href="/project/delete/{{{ $project->id }}}" id='{{$project->id}}' class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" ></span></a>
-        </span>
 @stop
