@@ -10,6 +10,7 @@ use Session;
 class ProjectsController extends Controller
 {
 
+
     public function show(){
            $projects =  DB::table('projects')->paginate(9);
            return view('dashboard.projects')->with('projects', $projects);
@@ -42,7 +43,7 @@ class ProjectsController extends Controller
             Session::flash('flash_message', 'Project successfully updated!');
             return redirect()->back();
     }
-    public function showOne($id) {
+      public function showOne($id) {
         $project = Project::findOrFail($id);
         $users = DB::table('user_project')
         ->where('project_id', '=', $id)
@@ -53,7 +54,8 @@ class ProjectsController extends Controller
         ->with('users', $users);;
     }
 
-    public function showEdit($id) {
+
+        public function showEdit($id) {
         $project = Project::findOrFail($id);
         $users = DB::table('user_project')
         ->where('project_id', '=', $id)
@@ -63,6 +65,7 @@ class ProjectsController extends Controller
         return view('show.projectEdit')->withProject($project)
         ->with('users', $users);
     }
+
     public function sort() {
         $sortby = Input::get('sortby');
         if ($sortby == 'date')
@@ -75,4 +78,6 @@ class ProjectsController extends Controller
         return view('dashboard.projects')->with('projects', $projects);
         //return response(view('dashboard.projects',array('projects'=>$projects)),200, ['Content-Type' => 'application/json']);
         }
+
+        
 }
