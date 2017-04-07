@@ -63,12 +63,9 @@
       <script src="{{asset('js/app.js')}}"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-    $( "#datepicker1" ).datepicker();
-    $( "#datepicker2" ).datepicker();
-    $( "#datepicker3" ).datepicker();
-  });
+    $( ".datepicker" ).each(function() {
+      $(this).datepicker();
+    });
   </script>
 </body>
 </html>
