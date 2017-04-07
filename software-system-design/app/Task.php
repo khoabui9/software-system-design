@@ -21,4 +21,7 @@ class Task extends Model
     public function project() {
         return $this -> belongsTo('App\Project');
     }
+    public function card() {
+        return $this -> belongsTo('App\Card');
+    }
 }

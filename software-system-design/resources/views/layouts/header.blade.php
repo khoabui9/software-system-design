@@ -49,9 +49,9 @@
        
     </div>
     <div class="row">
-    <div class="col-sm-12">
-      <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top pull-right" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a><!-- /.container -->
-    </div>
+    <!--<div class="col-sm-12">
+      <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top pull-right" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+    </div>-->
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -63,12 +63,9 @@
       <script src="{{asset('js/app.js')}}"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-    $( "#datepicker1" ).datepicker();
-    $( "#datepicker2" ).datepicker();
-    $( "#datepicker3" ).datepicker();
-  });
+    $( ".datepicker" ).each(function() {
+      $(this).datepicker();
+    });
   </script>
 </body>
 </html>

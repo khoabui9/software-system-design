@@ -41,9 +41,9 @@
             </div>
             <div class="form-group">
                 {!! Form::label('start', 'Start:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_created', $task->date_created, array('id' => 'datepicker')) !!}
+                {!! Form::text('date_created', $task->date_created, array('class' => 'datepicker')) !!}
                 {!! Form::label('end', 'End:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_ended', $task->date_ended, array('id' => 'datepicker1')) !!}
+                {!! Form::text('date_ended', $task->date_ended, array('class' => 'datepicker')) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
@@ -77,9 +77,9 @@
             </div>
             <div class="form-group">
                 {!! Form::label('start', 'Start:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_created', null, array('id' => 'datepicker2')) !!}
+                {!! Form::text('date_created', null, array('class' => 'datepicker')) !!}
                 {!! Form::label('end', 'End:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_ended', null, array('id' => 'datepicker3')) !!}
+                {!! Form::text('date_ended', null, array('class' => 'datepicker')) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}

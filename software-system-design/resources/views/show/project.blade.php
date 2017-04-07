@@ -50,6 +50,4 @@
         <div class="pull-right">
             <a href="/project/delete/{{$project->id}}" class="btn btn-danger">Delete</a>
         </div>
-
-
 @stop

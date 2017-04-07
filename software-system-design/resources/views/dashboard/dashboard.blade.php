@@ -7,17 +7,14 @@
 					  <tr>
 					    <th>Project</th>
 					    <th>Day created</th>
-					    <th>Members</th>
 					  </tr>
                       @foreach($projects as $project)
                         <tr>
 					    <td><a href="/project/{{{$project->id}}}">{{{ $project->name }}}</a></td>
 					    <td>{{{ $project->created_at }}}</td>
-							 <td>4</td>
 					  </tr>
                       @endforeach
                 </table>
-
           <h2 class="project-list">Tasks</h2>
 			<hr>
 				<table>

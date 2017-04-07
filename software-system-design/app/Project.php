@@ -22,5 +22,13 @@ class Project extends Model
     public function task() {
         return $this->hasMany('App/Task');
     }
+
+    public function card() {
+        return $this->hasMany('App/Card');
+    }
+
+    public function chat() {
+        return $this -> hasOne('App/Chat');
+    }
     // protected $fillable = ['name'];
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTaskTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateUserTaskTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_task', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('content');
+            $table->integer('chat_id')->unsigned();
+            $table->foreign('chat_id')->references('id')
+			            ->on('chats')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')
+            $table->foreign('user_id')->references('id')
 			            ->on('users')->onDelete('cascade');
-			
-			$table->integer('task_id')->unsigned()->nullable();
-			$table->foreign('task_id')->references('id')
-			            ->on('tasks')->onDelete('cascade');
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -33,6 +33,6 @@ class CreateUserTaskTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_task');
+        Schema::dropIfExists('messages');
     }
 }
