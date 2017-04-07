@@ -4,6 +4,30 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
+.justify {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+.something {
+	background-color: #963019;
+	height: 10px;
+	top: 0;
+}
+
+
+
+
+/*.back-to-top {
+    cursor: pointer;
+    position: fixed;
+	margin-bottom: 20px;
+	margin-right: 10px;
+    display:none;
+}*/
+
 .header {
 	height: 80px;
 	background-color: black;
@@ -12,30 +36,12 @@ body {
 	align-items: center;
 }
 
-.app-name {
-	font-size: 30px;
-	color: white;
-}
-.something {
-	background-color: #963019;
-	height: 10px;
-	top: 0;
-}
-.dashboard {
-	padding-top: 10px;
-	margin-bottom: 20px;
-}
-.dashboard-left {
-	border: 2px solid lightgrey;
-	border-radius: 10px;
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }
 
-h2 {
-	font-size: 30px;
-}
-.menu-list {
-	font-size: 20px;
-}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -48,22 +54,35 @@ td, th {
     padding: 8px;
 }
 
-tr:nth-child(even) {
-    background-color: #dddddd;
+
+h2 {
+	font-size: 30px;
+}
+
+.app-name {
+	font-size: 30px;
+	color: white;
+}
+
+
+.dashboard-left {
+	border: 2px solid lightgrey;
+	border-radius: 10px;
+}
+
+
+.menu-list {
+	font-size: 20px;
 }
 
 .danger {
 	color:red;
 }
-/*.back-to-top {
-    cursor: pointer;
-    position: fixed;
+
+
+.dashboard {
+	padding-top: 10px;
 	margin-bottom: 20px;
-	margin-right: 10px;
-    display:none;
-}*/
-.justify {
-	display: flex;
-	justify-content: center;
-	align-content: center;
 }
+
+
