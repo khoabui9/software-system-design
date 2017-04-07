@@ -2,20 +2,24 @@
 @section('content')
 <h1>Projects</h1>
      <hr>
-     <a class="create">Create new project</a>
+     <a class="create pull-left">Create new project</a>
      {!! Form::open([
-                'url' => 'sort'
+                'url' => 'sort',
+                'class' => 'form-fix'
             ]) !!}
      <!--<a href="sort" class="sort">Sort by date</a>-->
-      {!! Form::select('sortby', 
+     <div class="pull-right">
+     {!! Form::label('sort', 'Sort by:', ['class' => 'control-label']) !!}
+      {!! Form::select('sortby',
             [
+                '' => 'choose',
                 'default' => 'default',
                 'date' => 'date',
                 'name' => 'name',
             ],
-      null, ['class' => 'form-control','id' => 'select', 'onchange' => 'this.form.submit()']) 
+      null, ['class' => 'form-group','id' => 'select', 'onchange' => 'this.form.submit()']) 
       !!}
-
+      </div>
     {!! Form::close() !!}
      @if($errors->any())
                 <div class="alert alert-danger">
@@ -31,6 +35,7 @@
                     <a><span class="close_alert pull-right btn btn-danger"></span></a>
                 </div>
             @endif
+    <br>
      <hr>
       @foreach($projects as $project)
   <div class="col-sm-4">

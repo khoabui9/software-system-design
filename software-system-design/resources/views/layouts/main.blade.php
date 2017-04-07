@@ -99,6 +99,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 				  <a href="tasks"><li>Tasks</li></a>
 				  <a href="users"><li>Users</li></a>
 				</ul> 
+				<hr>
 					<h3><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo $html_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
 					<table class="table">
 						<tr>
