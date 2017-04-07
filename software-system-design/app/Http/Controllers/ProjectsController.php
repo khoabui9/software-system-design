@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Project;
+use App\UserProject;
+
+
 use Session;
 
 class ProjectsController extends Controller
@@ -21,8 +24,14 @@ class ProjectsController extends Controller
         ->join('users', 'users.id', '=', 'user_id')
         ->select('users.*')
         ->get();
+        $allUsers = DB::table('users')
+        ->get();
+        $ids1 = $allUsers->pluck('id');
+        $ids2 = $users->pluck('id');
+        $restUsers = DB::table('users')->whereIn('id',$ids1)->whereNotIn('id',$ids2)->get();
         return view('show.project')->withProject($project)
-        ->with('users', $users);;
+        ->with('users', $users)
+        ->with('restUsers', $restUsers);
     }
         public function showEdit($id) {
         $project = Project::findOrFail($id);
@@ -45,7 +54,7 @@ class ProjectsController extends Controller
 
         Project::create($project);
 
-        Session::flash('flash_message', 'Task successfully added!');
+        Session::flash('flash_message', 'Project successfully added!');
         return redirect()->action('ProjectsController@show');
     }
         public function update(Request $request, $id) {
@@ -53,8 +62,7 @@ class ProjectsController extends Controller
         $input = $request->all();
         $p->fill($input)->save();
         Session::flash('flash_message', 'Project successfully updated!');
-        return redirect()->back();
-
+        return redirect('/project/'.$id);
     }
     public function delete($id) {
         $p = Project::findOrFail($id);
@@ -63,6 +71,29 @@ class ProjectsController extends Controller
 
         return redirect()->action('ProjectsController@show');
     }
+    public function removeUser($id, $email) {
+        $userId=DB::table('users')
+        ->where('email', '=', $email)
+        ->select('id')
+        ->first();
+        $user = DB::table('user_project')
+        ->where('project_id', '=', $id)
+        ->where('user_id', '=', $userId->id)
+        ->delete();
+        return redirect()->back();
+        }
+    public function addUser(Request $request, $id) {
+        if($request->addUser==null)
+                return redirect()->back();
+        $userId=DB::table('users')
+        ->where('email', '=', $request->addUser)
+        ->select('id')->first();
+        DB::table('user_project')->insert(
+        [   'user_id' => $userId->id,
+            'project_id' => $id
+        ]);
+        return redirect()->back();
+        }
 
     public function sort() {
         $projects = Project::orderBy('created_at','desc')->paginate(9);
