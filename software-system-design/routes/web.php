@@ -1,7 +1,8 @@
 <?php
 
+
 /*
-|--------------------------------------------------------------------------
+--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -35,8 +36,10 @@ Route::post('/user/update/{email}', 'UsersController@update');
 
 // Route::get('/', 'TasksController@showTasks');
 // Route::get('/ProjectsList', function () {
-//     return redirect()->action('ProjectsController@showProjects');
-// });
+	// 	return redirect()->action('ProjectsController@showProjects');
+	//
+// }
+// );
 // Route::resource
 
 Auth::routes();
