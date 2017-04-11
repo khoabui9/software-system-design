@@ -1,24 +1,24 @@
-$(document).ready(function() {
-    $('.create').click(function() {
+$(document).ready(function () {
+    $('.create').click(function () {
         $('.lightbox_outer').css('display', 'flex');
     });
-    $('.close').click(function(){
-          $('.lightbox_outer').css('display', 'none');
+    $('.close').click(function () {
+        $('.lightbox_outer').css('display', 'none');
     });
-    
-    $('.open_edit').click(function() {
+
+    $('.open_edit').click(function () {
         var id = $(this).attr('id');
         var edit = '.edit' + id.toString();
         //console.log(edit);
         $(edit).css('display', 'block');
     });
-    $('.close_edit').click(function(){
-         var id = $(this).attr('id');
-           var edit = '.edit' + id.toString();
+    $('.close_edit').click(function () {
+        var id = $(this).attr('id');
+        var edit = '.edit' + id.toString();
         $(edit).css('display', 'none');
     });
 
-    $('.close_alert').click(function() {
+    $('.close_alert').click(function () {
         $('.alert').css('display', 'none');
     });
     // $(window).scroll(function () {
@@ -36,18 +36,18 @@ $(document).ready(function() {
     //         }, 800);
     //         return false;
     //     });
-        
+
     //     $('#back-to-top').tooltip('show');
 });
 
-var select =  document.getElementById('select');
-select.addEventListener('change', function() {
+var select = document.getElementById('select');
+select.addEventListener('change', function () {
     // $.ajax({
     //     type: 'POST',
     //     url: '/sort',
     //     data: {option: 'sortby'},
     //     success: function() {
-            
+
     //     } 
     // });
     this.form.submit();
