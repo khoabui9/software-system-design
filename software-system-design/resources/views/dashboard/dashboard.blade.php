@@ -1,5 +1,4 @@
 @extends('layouts.main')
-
 @section('content')
         <h2 class="project-list">Projects</h2>
 			<hr>
@@ -31,5 +30,4 @@
 					  </tr>
                       @endforeach
                 </table>
-
 @stop

@@ -22,10 +22,8 @@
      <div class="task_inner">
     <div >
     <ul  class="taskList">
-    
       @foreach($tasks as $task)   
    <li class="taskItem">
-   
           <span class="title complete">{{ $task->name }}</span> 
           <br>
            <span class="complete">{{ $task->description }}</span> 
@@ -53,7 +51,6 @@
             {!! Form::submit('Update task', ['class' => 'btn btn-primary']) !!}
             <a id='{{$task->id}}' class="close_edit btn btn-danger btn-sm"><span class="" >cancel</span></a>
             {!! Form::close() !!}
-            
           </span>
           <span class="pull-right">
               <button id='{{$task->id}}' class="open_edit btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>

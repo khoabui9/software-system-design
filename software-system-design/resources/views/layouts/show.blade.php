@@ -35,7 +35,6 @@
 </nav>
 </div>
 </div>
-
     <div class="container">
      <div class="row">
         <div class="project_container col-sm-12">

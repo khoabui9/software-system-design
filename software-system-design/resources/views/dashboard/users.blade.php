@@ -22,7 +22,6 @@
      <div class="user_inner">
     <div >
     <ul  class="userList">
-    
       @foreach($users as $user)   
    <li class="userItem">
           <span class="title complete">{{ $user->name }}</span>
@@ -39,7 +38,6 @@
             {!! Form::submit('Update user', ['class' => 'btn btn-primary']) !!}
             <a id='{{$user->id}}' class="close_edit btn btn-danger btn-sm"><span class="" >cancel</span></a>
             {!! Form::close() !!}
-            
           </span>
           <span class="pull-right">
               <button id='{{$user->id}}' class="open_edit btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>

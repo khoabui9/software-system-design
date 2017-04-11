@@ -60,22 +60,17 @@
                 'method' => 'POST',
                 'url' => '/project/create'
             ]) !!}
-               
             <div class="form-group">
                 {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
             </div>
-
             <div class="form-group">
                 {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
                 <br>
                 {!! Form::textarea('description', null ,['class' => 'form-control', 'size' => '50x5']) !!}
             </div>
-
             {!! Form::submit('Create New Project', ['class' => 'btn btn-primary']) !!}
-          
             {!! Form::close() !!}
-        
       </div>
     </div>
 @stop

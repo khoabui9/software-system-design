@@ -5,10 +5,11 @@
     <body>
         <div>
         <?php foreach ($projects as $project) {
-                 echo "<div>$project->name";
-                 echo "<button> Delete </button> </div>";
-            
-            }?>
+	echo "<div>$project->name";
+	echo "<button> Delete </button> </div>";
+	
+}
+?>
         </div>
     </body>
 </html>
