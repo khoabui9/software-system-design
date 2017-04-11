@@ -20,6 +20,10 @@ class TasksController extends Controller
     }
      public function update($id, Request $request)
     {
+     $this->validate($request, [
+            'name' => 'required|unique:tasks',
+            'description' => 'required'
+        ]);
     $task = Task::findOrFail($id);
 
     $input = $request->all();

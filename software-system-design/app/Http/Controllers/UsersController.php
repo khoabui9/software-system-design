@@ -21,8 +21,11 @@ class UsersController extends Controller
         Session::flash('flash_message', 'User successfully added!');
         return redirect()->back();
     }
-         public function update($email, Request $request)
+    public function update($email, Request $request)
     {    
+    $this->validate($request, [
+            'name' => 'required'
+    ]);
     $user = User::findOrFail($email);
     $input = $request->all();
     $user->fill($input)->save();

@@ -41,6 +41,10 @@ class ProjectsController extends Controller
         return redirect()->action('ProjectsController@show');
     }       
     public function update(Request $request, $id) {
+         $this->validate($request, [
+            'name' => 'required|unique:projects',
+            'description' => 'required'
+        ]);
             $p = Project::findOrFail($id);
             $input = $request->all();
             $p->fill($input)->save();
@@ -90,6 +94,9 @@ class ProjectsController extends Controller
     public function addUser(Request $request, $id) {
         if($request->addUser==null)
                 return redirect()->back();
+         $this->validate($request, [
+            'addUser' => 'required'
+        ]);
         $userId=DB::table('users')
         ->where('email', '=', $request->addUser)
         ->select('id')->first();
