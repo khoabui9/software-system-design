@@ -38,3 +38,7 @@ Route::post('/user/update/{email}', 'UsersController@update');
 //     return redirect()->action('ProjectsController@showProjects');
 // });
 // Route::resource
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
