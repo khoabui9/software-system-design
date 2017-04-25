@@ -11,6 +11,19 @@ class ChatsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+		DB::table('chats')->delete();
+		$chats = [
+            [
+                'name' => 'project1 chat',
+            ],
+            [
+                'name' => 'project2 chat',
+            ],
+            [
+                'name' => 'project3 chat',
+            ]
+        ];
+
+        DB::table('chats')->insert($chats);	
     }
 }
