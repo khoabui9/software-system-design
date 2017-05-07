@@ -28,6 +28,7 @@ Route::get('/tasks', 'TasksController@show');
 Route::get('/task/delete/{id}', 'TasksController@delete');
 Route::post('/task/create', 'TasksController@create');
 Route::post('/task/update/{id}', 'TasksController@update');
+Route::post('/task/{id1}/updateCard/{id2}', 'TasksController@updateCard');
 
 Route::get('/users', 'UsersController@show');
 Route::get('/user/delete/{email}', 'UsersController@delete');
