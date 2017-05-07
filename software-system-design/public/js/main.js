@@ -1,6 +1,11 @@
 $(document).ready(function () {
+     $( ".datepicker" ).each(function() {
+      $(this).datepicker();
+    });
     $('.create').click(function () {
+        var pid = $(this).parent(".mycard").attr("id");
         $('.lightbox_outer').css('display', 'flex');
+        $('.lightbox_inner').attr('id', pid);
     });
     $('.close').click(function () {
         $('.lightbox_outer').css('display', 'none');
@@ -38,18 +43,43 @@ $(document).ready(function () {
     //     });
 
     //     $('#back-to-top').tooltip('show');
+    $('.new').click(function(e){
+        $('.lightbox_outer').css('display', 'none');
+        var title = $('.title').val();
+        var date_created = $('.date_created').val();
+        var date_ended = $('.date_ended').val();
+        var description = $('.description').val();
+        var projectID = $("#project_id").attr('value');
+        var cardID = $("#lightbox_inner").attr('id');
+        request = $.ajax({
+            type: "POST",
+            url: "/task/create",
+            //datatype : 'json',
+            data: {
+                'name': title, 
+                'description': description, 
+                'date_created': date_created, 
+                'date_ended': date_ended,
+                'project_id': projectID,
+                'card_id': cardID
+            },
+            success: function(msg) {
+                alert(msg);
+            },
+            error: function() {
+                alert('haha');
+            }
+        });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('[name="_token"]').val()
+            }
+        });       
+        e.preventDefault();
+    });
+    
+
+
 });
 
-var select = document.getElementById('select');
-select.addEventListener('change', function () {
-    // $.ajax({
-    //     type: 'POST',
-    //     url: '/sort',
-    //     data: {option: 'sortby'},
-    //     success: function() {
-
-    //     } 
-    // });
-    this.form.submit();
-}, false);
 
