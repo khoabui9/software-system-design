@@ -12,5 +12,18 @@ class CardsTableSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('cards')->delete();
+		$cards = [
+		            [
+		               'name' => 'TODO'
+		            ],
+		            [
+		              'name' => 'In progress',
+		            ],
+		            [
+		               'name' => 'Done',
+		            ]
+		        ];
+		DB::table('cards')->insert($cards);
     }
 }
