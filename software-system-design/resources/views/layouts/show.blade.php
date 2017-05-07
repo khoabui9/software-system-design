@@ -3,12 +3,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{csrf_token() }}">
     <link rel="icon" href="../../favicon.ico">
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
   <link rel="stylesheet" type="text/css" href="{{ asset('css/project.css') }}"/>
    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('lib/jquery.ui.css') }}"/>
   </head>
   <body data-gr-c-s-loaded="true">
   <div class="row">
@@ -41,13 +43,13 @@
           @yield('content')
         </div>
     </div>
-    </div><!-- /.container -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    </div>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="{{asset('js/main.js')}}"></script>
       <script src="{{asset('js/app.js')}}"></script>
+      <script src="{{asset('lib/jquery.min.js')}}"></script>
+      <script src="{{asset('lib/jquery.ui.min.js')}}"></script>
+       <script src="{{asset('js/dragdrop.js')}}"></script>
 </body></html>

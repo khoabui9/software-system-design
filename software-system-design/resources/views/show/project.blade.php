@@ -1,53 +1,107 @@
 @extends('layouts.show')
 @section('content')
-      <h1>{{ $project->name }}</h1>
+        <h4>{{ $project->name }}</h4>
         <p class="lead">{{ $project->description }}</p>
         <hr>
-       <h2>
-       Users:
-       </h2>
-       <table class="table_users">
-       <th>Name</th>   
-       <th>Email</th>
-    @foreach($users as $user)   
-        <tr>
-        <td class="table_users">{{$user->name }}</td>
-        <td class="table_users">{{$user->email}}</td>
-         <td>   <a href="/project/removeUser/{{{$project->id}}}/{{{$user->email}}}" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" ></span></a></td>
-        </tr>
-    @endforeach
-     </table>
-  <!--  <div class="form-controll">
-    Add user:
-        <select name="restUsersList" form="carform">
-        @foreach($restUsers as $user)   
-            <option value="{{{$user->email}}}">{{$user->name}}</option>
-        @endforeach
-        </select>-->
-        <p/>
-         <span>
-             {!! Form::open([
-                'url' => '/project/addUser/'.$project->id,
-                'method' => 'POST'
-            ]) !!}
-            <div class="form-group">
-            {!! Form::Label('users', 'Add user:') !!}
-            <select name="addUser">
-                 <option selected disabled>Select user</option>
-                @foreach($restUsers as $user)   
-                  <option value="{{$user->email}}">{{$user->name." ".$user->email}}</option>
-                @endforeach
-            </select>
-            {!! Form::submit('Add user', ['class' => 'btn btn-primary btn-sm']) !!}
+    
+      @if($errors->any())
+                <div class="alert alert-danger">
+                 <a><span class="close_alert pull-right btn btn-danger">X</span></a>
+                    @foreach($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
+     @if(Session::has('flash_message'))
+                <div class="alert alert-success">
+                    {{ Session::get('flash_message') }}
+                <a><span class="close_alert pull-right btn btn-danger">X</span></a>
+                </div>
+     @endif
+     <hr>
+        <div class="card_wrapper col-sm-4">
+        <div class="mycard" id="1">
+            <div class="card_header">
+               <h5 class="header_text">TODO</h5>
             </div>
-            {!! Form::close() !!}
-            
-          </span>
-    </div>-
+            <a class="create">Create new task</a>
+            @foreach($taskss as $task)
+            @if ($task->card_id == 1)
+            <div id="{{$task->id}}" class="card-task">
+                <h2 class="task_id_here" id="{{$task->card_id}}">{{$task->name}}</h2>
+            </div>
+            @endif
+            @endforeach
+        </div>
+        </div>
+        <div class="card_wrapper col-sm-4">
+        <div class="mycard" id="2">
+            <div class="card_header">
+                <h5 class="header_text">WORK IN PROGRESS</h5>
+            </div>
+            <a class="create">Create new task</a>
+            @foreach($taskss as $task)
+            @if ($task->card_id == 2)
+            <div id="{{$task->id}}" class="card-task">
+                <h2 class="task_id_here" id="{{$task->card_id}}">{{$task->name}}</h2>
+            </div>
+            @endif
+            @endforeach
+        </div>
+        </div>
+        <div class="card_wrapper col-sm-4">
+        <div class="mycard" id="3">
+            <div class="card_header">
+                <h5 class="header_text">DONE</h5>
+            </div>
+            <a class="create">Create new task</a>
+            @foreach($taskss as $task)
+            @if ($task->card_id == 3)
+            <div id="{{$task->id}}" class="card-task">
+                <h2 class="task_id_here" id="{{$task->card_id}}">{{$task->name}}</h2>
+            </div>
+            @endif
+            @endforeach
+        </div>
+        </div>
+        <br>
+        <div class="col-sm-12">
+              <hr>
         <a href="/projects" class="btn btn-info">Back</a>
         <a href="/project/showEdit/{{$project->id}}" class="edit_project btn btn-primary">Edit</a>
-    </div>
-        <div class="pull-right">
-            <a href="/project/delete/{{$project->id}}" class="btn btn-danger">Delete</a>
         </div>
+    </div>
+    <div class="lightbox_outer">
+      <div class="lightbox_inner">
+        <a class="close">X</a>
+        <br>
+            {!! Form::open([
+                'url' => '/task/create',
+                'method' => 'POST',
+            ]) !!}
+            
+            <div class="form-group">
+                {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
+                {!! Form::text('name', null, ['class' => 'title form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('start', 'Start:', ['class' => 'control-label']) !!}
+                {!! Form::text('date_created', null, array('class' => 'date_created datepicker')) !!}
+                {!! Form::label('end', 'End:', ['class' => 'control-label']) !!}
+                {!! Form::text('date_ended', null, array('class' => 'date_ended datepicker')) !!}
+                <!--{!! Form::text('project_id', null, array('class' => 'hidden pid')) !!}
+                {!! Form::text('card_id', null, array('class' => 'hidden cid')) !!}-->
+            </div>
+            <div class="form-group">
+                {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
+                <br>
+                {!! Form::textarea('description', null ,['class' => 'description form-control', 'size' => '50x5']) !!}
+            </div>
+            {!! Form::button('Create New Task', ['class' => 'new btn btn-primary']) !!}
+            {!! Form::close() !!}
+      </div>
+    </div>
+    <!--<div class="pull-right">
+        <a href="/project/delete/{{$project->id}}" class="btn btn-danger">Delete</a>
+    </div>-->
 @stop
