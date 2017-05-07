@@ -3,20 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use App\Project;
+use App\UserTask;
 use App\Task;
 use Session;
 
 class TasksController extends Controller
 {
 	public function show(){
-		$tasks = Task::all();
-		return view('dashboard.tasks')->with('tasks', $tasks);
+		$user = Auth::user();
+		$id = Auth::id();
+		if(Auth::check()) {
+			$query =  DB::table('user_task')
+			->select('tasks.*')
+		        ->where('user_id', '=', $id)
+		        ->join('tasks', 'tasks.id', '=', 'user_task.task_id');
+		        $tasks = $query->get();
+			return view('dashboard.tasks')->with('tasks', $tasks);
+		}
+		else {
+			return redirect()->action('HomeController@index');
+		}
+		//return view('dashboard.tasks')->with('tasks', $tasks);
 	}
 	
 	public function showOne($id) {
 		$task = Task::findOrFail($id);
 		
-		//r		eturn view('show.project')->withProject($project);
+		//return view('show.project')->withProject($project);
 	}
 	public function update($id, Request $request)
 	    {
@@ -34,6 +51,14 @@ class TasksController extends Controller
 		
 		return redirect()->action('TasksController@show');
 	}
+
+	public function updateCard($id, $id2) {
+		$task = Task::findOrFail($id);
+
+		$task->card_id = $id2;
+
+		$task->save();
+	}
 	
 	public function delete($id) {
 		$t = Task::findOrFail($id);
@@ -44,15 +69,24 @@ class TasksController extends Controller
 	}
 	
 	public function create(Request $request) {
+		$user = Auth::user();
 		$this->validate($request, [
 		            'name' => 'required|unique:tasks',
-		            'description' => 'required'
-		        ]);
-		
-		$task = $request->all();
-		
-		Task::create($task);
-		
+		            'description' => 'required',
+					'date_created' => 'required',
+					'date_ended' => 'required'
+		]);
+		//Task::create($task);
+		$task = new Task();
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->date_created = $request->date_created;
+		$task->date_ended = $request->date_ended;
+		$task->project_id = $request->project_id;
+		$task->card_id = $request->card_id;
+        $task->save();
+        
+        $task->user()->save($user); 
 		Session::flash('flash_message', 'Task successfully added!');
 		return redirect()->back();
 	}
