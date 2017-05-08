@@ -43,31 +43,33 @@ $(document).ready(function () {
     //     });
 
     //     $('#back-to-top').tooltip('show');
-    $('.new').click(function(e){
+    $('#form').submit(function(e){
         $('.lightbox_outer').css('display', 'none');
         var title = $('.title').val();
         var date_created = $('.date_created').val();
         var date_ended = $('.date_ended').val();
         var description = $('.description').val();
-        var projectID = $("#project_id").attr('value');
-        var cardID = $("#lightbox_inner").attr('id');
+        var projectID = $(".lead").attr('id');
+        var cardID = $(".lightbox_inner").attr('id');
         request = $.ajax({
             type: "POST",
-            url: "/task/create",
+            url: "/task/create/" + projectID + "/" + cardID,
             //datatype : 'json',
             data: {
                 'name': title, 
                 'description': description, 
+                'project_id': projectID,
+                'card_id': cardID,
                 'date_created': date_created, 
                 'date_ended': date_ended,
-                'project_id': projectID,
-                'card_id': cardID
             },
             success: function(msg) {
-                alert(msg);
+                // var html = "<div id='{{$task->id}}' class='card-task'><h2 class='task_id_here' id='{{$task->card_id}}'>{{$task->name}}</h2></div>";
+                // $(".c" + cardID).append(html);
+                 alert('success');
             },
             error: function() {
-                alert('haha');
+                alert('haha failed');
             }
         });
         $.ajaxSetup({

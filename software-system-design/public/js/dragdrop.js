@@ -27,6 +27,7 @@ $.each(codes, function(index, value) {
        $.ajax({
         method: 'POST',
         url: '/task/' + task_id + '/updateCard/' + card_id,
+        cache: false,
         // beforeSend: function (xhr) {
         //     var token = $('meta[name="csrf_token"]').attr('content');
 
