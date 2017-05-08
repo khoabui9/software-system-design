@@ -1,7 +1,7 @@
 @extends('layouts.show')
 @section('content')
         <h4>{{ $project->name }}</h4>
-        <p class="lead">{{ $project->description }}</p>
+        <p id="{{$project->id}}" class="lead">{{ $project->description }}</p>
         <hr>
     
       @if($errors->any())
@@ -20,7 +20,7 @@
      @endif
      <hr>
         <div class="card_wrapper col-sm-4">
-        <div class="mycard" id="1">
+        <div class="mycard c1" id="1">
             <div class="card_header">
                <h5 class="header_text">TODO</h5>
             </div>
@@ -35,7 +35,7 @@
         </div>
         </div>
         <div class="card_wrapper col-sm-4">
-        <div class="mycard" id="2">
+        <div class="mycard c2" id="2">
             <div class="card_header">
                 <h5 class="header_text">WORK IN PROGRESS</h5>
             </div>
@@ -50,7 +50,7 @@
         </div>
         </div>
         <div class="card_wrapper col-sm-4">
-        <div class="mycard" id="3">
+        <div class="mycard c3" id="3">
             <div class="card_header">
                 <h5 class="header_text">DONE</h5>
             </div>
@@ -76,8 +76,7 @@
         <a class="close">X</a>
         <br>
             {!! Form::open([
-                'url' => '/task/create',
-                'method' => 'POST',
+                'id'  => 'form'
             ]) !!}
             
             <div class="form-group">
@@ -97,8 +96,8 @@
                 <br>
                 {!! Form::textarea('description', null ,['class' => 'description form-control', 'size' => '50x5']) !!}
             </div>
-            {!! Form::button('Create New Task', ['class' => 'new btn btn-primary']) !!}
-            {!! Form::close() !!}
+            {!! Form::submit('Create New Task', ['class' => 'new btn btn-primary']) !!}
+            {!!  Form::token()  . Form::close() !!}
       </div>
     </div>
     <!--<div class="pull-right">

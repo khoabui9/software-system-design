@@ -82,8 +82,30 @@ class TasksController extends Controller
         $task->description = $request->description;
         $task->date_created = $request->date_created;
 		$task->date_ended = $request->date_ended;
-		$task->project_id = $request->project_id;
-		$task->card_id = $request->card_id;
+		// $task->project_id = $request->project_id;
+		// $task->card_id = $request->card_id;
+        $task->save();
+        
+        $task->user()->save($user); 
+		Session::flash('flash_message', 'Task successfully added!');
+		return redirect()->back();
+	}
+	public function createInProject(Request $request, $id1, $id2) {
+		$user = Auth::user();
+		$this->validate($request, [
+		            'name' => 'required|unique:tasks',
+		            'description' => 'required',
+					'date_created' => 'required',
+					'date_ended' => 'required'
+		]);
+		//Task::create($task);
+		$task = new Task();
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->date_created = $request->date_created;
+		$task->date_ended = $request->date_ended;
+		$task->project_id = $id1;
+		$task->card_id = $id2;
         $task->save();
         
         $task->user()->save($user); 

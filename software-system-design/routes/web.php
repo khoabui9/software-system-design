@@ -27,6 +27,7 @@ Route::post('/sort', 'ProjectsController@sort');
 Route::get('/tasks', 'TasksController@show');
 Route::get('/task/delete/{id}', 'TasksController@delete');
 Route::post('/task/create', 'TasksController@create');
+Route::post('/task/create/{id1}/{id2}', 'TasksController@createInProject');
 Route::post('/task/update/{id}', 'TasksController@update');
 Route::post('/task/{id1}/updateCard/{id2}', 'TasksController@updateCard');
 
