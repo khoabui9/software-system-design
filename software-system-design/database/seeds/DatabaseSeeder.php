@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
 		$this->call(ChatsTableSeeder::class);
 		$this->call(UserChatTableSeeder::class);
 		$this->call(MessagesTableSeeder::class);
+		$this->call(CardsTableSeeder::class);
 	}
 }

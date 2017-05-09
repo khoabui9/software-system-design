@@ -16,9 +16,6 @@ class CreateCardsTable extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('project_id')->unsigned();
-			$table->foreign('project_id')->references('id')
-			            ->on('projects')->onDelete('cascade');
             $table->timestamps();
         });
     }

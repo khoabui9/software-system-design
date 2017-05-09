@@ -5,19 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 use App\Project;
 use App\UserProject;
+use App\Task;
+use App\Card;
 
 
 use Session;
 
 class ProjectsController extends Controller
 {
-	
-	
 	public function show(){
-		$projects =  DB::table('projects')->paginate(9);
-		return view('dashboard.projects')->with('projects', $projects);
+		$user = Auth::user();
+		$id = Auth::id();
+		if(Auth::check()) {
+			$query =  DB::table('user_project')
+			->select('projects.*')
+		        ->where('user_id', '=', $id)
+		        ->join('projects', 'projects.id', '=', 'user_project.project_id');
+		        $projects = $query->get();
+			return view('dashboard.projects')->with('projects', $projects);
+		}
+		else {
+			return redirect()->action('HomeController@index');
+		}
 	}
 	public function delete($id) {
 		$p = Project::findOrFail($id);
@@ -28,23 +40,25 @@ class ProjectsController extends Controller
 	}
 	
 	public function create(Request $request) {
+		$user = Auth::user();
 		$this->validate($request, [
 		            'name' => 'required|unique:projects',
 		            'description' => 'required'
-		        ]);
+		]);
+		$project = new Project();
+		$project->name = $request->name;
+		$project->description = $request->description;
+		$project->save();
 		
-		$project = $request->all();
+	 	$project->user()->save($user); 
+		// $project = $request->all();
 		
-		Project::create($project);
+		// Project::create($project);
 		
 		Session::flash('flash_message', 'Task successfully added!');
 		return redirect()->action('ProjectsController@show');
 	}
 	public function update(Request $request, $id) {
-		$this->validate($request, [
-		            'name' => 'required|unique:projects',
-		            'description' => 'required'
-		        ]);
 		$p = Project::findOrFail($id);
 		$input = $request->all();
 		$p->fill($input)->save();
@@ -63,9 +77,14 @@ class ProjectsController extends Controller
 		$ids1 = $allUsers->pluck('id');
 		$ids2 = $users->pluck('id');
 		$restUsers = DB::table('users')->whereIn('id',$ids1)->whereNotIn('id',$ids2)->get();
+		$taskss = DB::table('tasks')
+			 ->where('project_id', '=', $id)
+			 ->get();
+
 		return view('show.project')->withProject($project)
 		        ->with('users', $users)
-		        ->with('restUsers', $restUsers);
+		        ->with('restUsers', $restUsers)
+			->with('taskss',$taskss);
 	}
 	
 	
@@ -76,8 +95,14 @@ class ProjectsController extends Controller
 		        ->join('users', 'users.id', '=', 'user_id')
 		        ->select('users.*')
 		        ->get();
+		$allUsers = DB::table('users')
+		        ->get();
+		$ids1 = $allUsers->pluck('id');
+		$ids2 = $users->pluck('id');
+		$restUsers = DB::table('users')->whereIn('id',$ids1)->whereNotIn('id',$ids2)->get();
 		return view('show.projectEdit')->withProject($project)
-		        ->with('users', $users);
+		        ->with('users', $users)
+			->with('restUsers', $restUsers);
 	}
 
 	public function showChat($id) {
@@ -125,17 +150,15 @@ class ProjectsController extends Controller
 	}
 	
 	public function sort() {
-		$sortby = Input::get('sortby');
-		if ($sortby == 'date')
-		            $projects =  DB::table('projects')->orderBy('created_at','desc')->paginate(9);
-		else if ($sortby == 'name')
-		            $projects = DB::table('projects')->orderBy('name','asc')->paginate(9);
-		else if ($sortby == 'default')
-		            $projects =  DB::table('projects')->paginate(9);
+		// $sortby = Input::get('sortby');
+		// if ($sortby == 'date')
+		//             $projects =  DB::table('projects')->orderBy('created_at','desc')->paginate(9);
+		// else if ($sortby == 'name')
+		//             $projects = DB::table('projects')->orderBy('name','asc')->paginate(9);
+		// else if ($sortby == 'default')
+		//             $projects =  DB::table('projects')->paginate(9);
 		
-		return view('dashboard.projects')->with('projects', $projects);
-		//r		eturn response(view('dashboard.projects',array('projects'=>$projects)),200, ['Content-Type' => 'application/json']);
-	}
-	
-	
+		// return view('dashboard.projects')->with('projects', $projects);
+		//return response(view('dashboard.projects',array('projects'=>$projects)),200, ['Content-Type' => 'application/json']);
+	}	
 }

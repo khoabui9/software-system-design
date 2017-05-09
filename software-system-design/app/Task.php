@@ -10,7 +10,9 @@ class Task extends Model
         'name',
         'description',
         'date_created',
-        'date_ended'
+        'date_ended', 
+        'project_id',
+        'card_id'
         ];
     //
     public function user() {

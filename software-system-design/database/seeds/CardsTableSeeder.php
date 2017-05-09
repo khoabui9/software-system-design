@@ -11,19 +11,18 @@ class CardsTableSeeder extends Seeder
      */
     public function run()
     {
-		DB::table('chats')->delete();
-		$chats = [
-            [
-                'name' => 'project1 chat',
-            ],
-            [
-                'name' => 'project2 chat',
-            ],
-            [
-                'name' => 'project3 chat',
-            ]
-        ];
-
-        DB::table('chats')->insert($chats);
+        DB::table('cards')->delete();
+		$cards = [
+		            [
+		               'name' => 'TODO'
+		            ],
+		            [
+		              'name' => 'In progress',
+		            ],
+		            [
+		               'name' => 'Done',
+		            ]
+		        ];
+		DB::table('cards')->insert($cards);
     }
 }
