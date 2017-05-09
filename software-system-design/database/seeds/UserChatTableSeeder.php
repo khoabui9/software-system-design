@@ -11,6 +11,7 @@ class UserChatTableSeeder extends Seeder
      */
     public function run()
     {
+     	DB::table('user_chat')->delete();
         $messages = [
 		            [
 		               'user_id' => 3,
