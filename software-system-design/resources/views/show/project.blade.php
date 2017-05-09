@@ -46,6 +46,8 @@
     </div>-
         <a href="/projects" class="btn btn-info">Back</a>
         <a href="/project/showEdit/{{$project->id}}" class="edit_project btn btn-primary">Edit</a>
+        <a href="/project/chat/{{$project->id}}" class="btn btn-primary">Chat</a>
+
     </div>
         <div class="pull-right">
             <a href="/project/delete/{{$project->id}}" class="btn btn-danger">Delete</a>

@@ -79,6 +79,23 @@ class ProjectsController extends Controller
 		return view('show.projectEdit')->withProject($project)
 		        ->with('users', $users);
 	}
+
+	public function showChat($id) {
+		$project = Project::findOrFail($id);
+		$messages = DB::table('messages')
+			->join('chats', 'chats.id', '=', 'chat_id')
+			->where('chats.project_id', '=', $id)
+			->orderBy('messages.id')
+		        ->get();
+		$users = DB::table('user_project')
+		        ->where('project_id', '=', $id)
+		        ->join('users', 'users.id', '=', 'user_id')
+		        ->select('users.*')
+		        ->get();
+		return view('show.projectChat')->withProject($project)
+		        ->with('users', $users)
+			->with('messages', $messages);
+	}
 	
 	public function removeUser($id, $email) {
 		$userId=DB::table('users')
