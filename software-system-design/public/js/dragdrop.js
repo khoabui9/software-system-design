@@ -35,7 +35,7 @@ $.each(codes, function(index, value) {
         //           return xhr.setRequestHeader('X-CSRF-TOKEN', token);
         //     }
         // },
-        data: {"task_id": task_id,"card_id": card_id},
+        data: {'token': $('[name="_token"]').val(),"task_id": task_id,"card_id": card_id},
         success: function() {
             alert("success");
         },

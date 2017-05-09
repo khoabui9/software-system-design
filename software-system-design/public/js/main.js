@@ -56,6 +56,7 @@ $(document).ready(function () {
             url: "/task/create/" + projectID + "/" + cardID,
             //datatype : 'json',
             data: {
+                'token': $('[name="_token"]').val(),
                 'name': title, 
                 'description': description, 
                 'project_id': projectID,
