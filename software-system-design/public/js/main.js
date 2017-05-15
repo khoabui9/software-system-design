@@ -1,5 +1,5 @@
 $(document).ready(function () {
-     $( ".datepicker" ).each(function() {
+    $( ".datepicker" ).each(function() {
       $(this).datepicker();
     });
     $('.create').click(function () {
@@ -26,23 +26,6 @@ $(document).ready(function () {
     $('.close_alert').click(function () {
         $('.alert').css('display', 'none');
     });
-    // $(window).scroll(function () {
-    //         if ($(this).scrollTop() > 3000) {
-    //             $('#back-to-top').fadeIn();
-    //         } else {
-    //             $('#back-to-top').fadeOut();
-    //         }
-    //     });
-    //     // scroll body to 0px on click
-    //     $('#back-to-top').click(function () {
-    //         $('#back-to-top').tooltip('hide');
-    //         $('body,html').animate({
-    //             scrollTop: 0
-    //         }, 800);
-    //         return false;
-    //     });
-
-    //     $('#back-to-top').tooltip('show');
     $('#form').submit(function(e){
         $('.lightbox_outer').css('display', 'none');
         var title = $('.title').val();
@@ -65,12 +48,10 @@ $(document).ready(function () {
                 'date_ended': date_ended,
             },
             success: function(msg) {
-                // var html = "<div id='{{$task->id}}' class='card-task'><h2 class='task_id_here' id='{{$task->card_id}}'>{{$task->name}}</h2></div>";
-                // $(".c" + cardID).append(html);
-                 alert('success');
+                window.location.reload();
             },
             error: function() {
-                alert('haha failed');
+                alert("something went wrong\nAll fields required");
             }
         });
         $.ajaxSetup({
@@ -80,9 +61,41 @@ $(document).ready(function () {
         });       
         e.preventDefault();
     });
-    
 
-
+    $('.open_edit_in').click(function () {
+        $('.lightbox_outer_task').css('display', 'flex');
+        var tId = $(this).attr('id');
+        $('.b').attr('id',tId);  
+    });
+    $('.close_task').click(function () {
+        $('.lightbox_outer_task').css('display', 'none');
+    });
+    $('#formsub').submit(function(e){
+        var taskID = $('.b').attr('id');
+        var user = $('#assi').val();
+        $.ajax({
+            type: 'POST',
+            url: '/task/assign/' + taskID,
+            cache: false,
+            data: {
+                'token': $('[name="_token"]').val(),
+                'task_id': taskID,
+                'user_id': user,
+            },
+            success: function(msg) {
+                alert('success');
+            },
+            error: function() {
+                alert("something went wrong\nAll fields required");
+            }
+        });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('[name="_token"]').val()
+            }
+        });       
+        e.preventDefault();
+    });
 });
 
 

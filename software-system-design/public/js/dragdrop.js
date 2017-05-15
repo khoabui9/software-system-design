@@ -5,7 +5,11 @@ var draggableOptions = {
         cursor: "move",
         revertDuration: 0
     }
-$('.card-task').draggable(draggableOptions);
+$('.card-task').draggable(draggableOptions, {
+     drag: function() { 
+         $(this).css("z-index", "1");
+      }
+});
 
 $('.mycard').droppable();
 
@@ -22,6 +26,7 @@ $.each(codes, function(index, value) {
       $(this).append(element);
       var id = $(this).attr('id');
       $(element).children().attr('id',id);
+      $(element).css("z-index", "0");
       var task_id = $(element).attr('id');
       var card_id = $(this).attr('id');
        $.ajax({
@@ -37,10 +42,8 @@ $.each(codes, function(index, value) {
         // },
         data: {'token': $('[name="_token"]').val(),"task_id": task_id,"card_id": card_id},
         success: function() {
-            alert("success");
         },
         error: function() {
-            alert("error");
         }
     });
     $.ajaxSetup({

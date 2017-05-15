@@ -30,8 +30,30 @@ body {
    
 }
 
-
-.close {
+.lightbox_inner_task {
+    margin-top: 5%;
+    height: 500px;
+    background-color: white;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 2px 13px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 13px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 13px -2px rgba(0,0,0,0.75);
+    
+}
+.lightbox_outer_task {
+    display: none;
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    align-content: flex-start;
+    justify-content: center;
+   
+}
+.close .close_task {
      height: 25px;
      width: 25px;
      border-radius: 10px;
@@ -45,7 +67,6 @@ body {
 /*.hidden {
     display: none;
 }*/
-
 .something {
 	background-color: #963019;
 	height: 10px;
@@ -78,7 +99,7 @@ form {
     float: left;
     margin: 0 5px;
     background-color: #e3e3e3;
-    min-height: 240px;
+    min-height: 500px;
     border-radius: 10px;
     padding-bottom: 15px;
 }
@@ -94,16 +115,18 @@ form {
     border-radius: 5px;
     background-color: #fff;
     width: 95%;
+    min-height: 60px;
     margin: 5px;
     padding: 5px;
 }
+
 .header_text {
     width: 80%;
 }
-/*.project_container {
-    overflow-x: visible;
-}*/
- 
+.project_container {
+    height: auto;
+}
+
 
 
 
