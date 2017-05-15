@@ -54,7 +54,7 @@
       </div>
       <div class="lightbox_outer">
       <div class="lightbox_inner">
-        <a class="close">X</a>
+        <a class="btn btn-danger btn-sm close">X</a>
         <br>
             {!! Form::open([
                 'method' => 'POST',
