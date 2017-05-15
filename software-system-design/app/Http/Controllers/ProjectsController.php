@@ -10,6 +10,7 @@ use App\Project;
 use App\UserProject;
 use App\Task;
 use App\Card;
+use App\User;
 
 
 use Session;
@@ -79,8 +80,7 @@ class ProjectsController extends Controller
 		$restUsers = DB::table('users')->whereIn('id',$ids1)->whereNotIn('id',$ids2)->get();
 		$taskss = DB::table('tasks')
 			 ->where('project_id', '=', $id)
-			 ->get();
-
+			 ->get();	 
 		return view('show.project')->withProject($project)
 		        ->with('users', $users)
 		        ->with('restUsers', $restUsers)

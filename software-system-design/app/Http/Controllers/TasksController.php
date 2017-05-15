@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Project;
 use App\UserTask;
 use App\Task;
+use App\User;
 use Session;
 
 class TasksController extends Controller
@@ -65,13 +66,13 @@ class TasksController extends Controller
 		
 		$t->delete();
 		
-		return redirect()->action('TasksController@show');
+		return redirect()->back();
 	}
 	
 	public function create(Request $request) {
 		$user = Auth::user();
 		$this->validate($request, [
-		            'name' => 'required|unique:tasks',
+		            'name' => 'required',
 		            'description' => 'required',
 					'date_created' => 'required',
 					'date_ended' => 'required'
@@ -111,5 +112,17 @@ class TasksController extends Controller
         $task->user()->save($user); 
 		Session::flash('flash_message', 'Task successfully added!');
 		return redirect()->back();
+	}
+	public function assignUser(Request $request, $id) {
+		if($request->assignUser==null)
+		    return redirect()->back();
+		$this->validate($request, [
+		            'assignUser' => 'required'
+		]);
+		
+		$findTask = Task::findOrFail($id);
+		$findUser = User::findOrFail($request->assignUser);
+
+		$findTask->user()->save($findUser);
 	}
 }
