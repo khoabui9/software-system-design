@@ -30,6 +30,7 @@ Route::post('/task/create', 'TasksController@create');
 Route::post('/task/create/{id1}/{id2}', 'TasksController@createInProject');
 Route::post('/task/update/{id}', 'TasksController@update');
 Route::post('/task/{id1}/updateCard/{id2}', 'TasksController@updateCard');
+Route::post('/task/assign/{id}', 'TasksController@assignUser');
 
 Route::get('/users', 'UsersController@show');
 Route::get('/user/delete/{email}', 'UsersController@delete');
