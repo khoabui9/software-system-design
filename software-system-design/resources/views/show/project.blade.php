@@ -34,9 +34,10 @@
             @foreach($taskss as $task)
             @if ($task->card_id == 1)
            <div id="{{$task->id}}" class="card-task">
-            <div class="row">
+            <div class="cc row">
                 <div class="col-sm-8">
                     <h4 class="task_id_here" id="{{$task->card_id}}">{{$task->name}}</h4>
+                    <strong class="taskDate"><i class="fa fa-calendar"></i>{{ $task->date_ended }}</strong>
                 </div>
                 <div class="col-sm-4">
                     <div class="hover">
@@ -62,6 +63,7 @@
             <div class="row">
                 <div class="col-sm-8">
                     <h4 class="task_id_here" id="{{$task->card_id}}">{{$task->name}}</h4>
+                    <strong class="taskDate"><i class="fa fa-calendar"></i>{{ $task->date_ended }}</strong>
                 </div>
                 <div class="col-sm-4">
                     <div class="hover">
@@ -87,6 +89,7 @@
             <div class="row">
                 <div class="col-sm-8">
                     <h4 class="task_id_here" id="{{$task->card_id}}">{{$task->name}}</h4>
+                    <strong class="taskDate"><i class="fa fa-calendar"></i>{{ $task->date_ended }}</strong>
                 </div>
                 <div class="col-sm-4">
                     <div class="hover">
@@ -129,7 +132,7 @@
                 {!! Form::textarea('description', null ,['class' => 'description form-control', 'size' => '50x5']) !!}
             </div>
             {!! Form::submit('Create New Task', ['class' => 'new btn btn-primary']) !!}
-            {!!  Form::token()  . Form::close() !!}
+            {!!  Form::token() . Form::close() !!}
       </div>
     </div>
      <div class="lightbox_outer_task">
@@ -161,7 +164,7 @@
             </div>
             <div class="b">
             {!! Form::open([
-                'id'  => 'formsub',
+                'id'  => 'formsub'
             ]) !!}
             <div class="form-group">
             {!! Form::Label('users', 'Assign user:') !!}
@@ -172,9 +175,9 @@
                 @endforeach
             </select>
             {!! Form::submit('Assign user', ['class' => 'btn btn-primary btn-sm']) !!}
-            {!! Form::button('Unassign user', ['class' => 'btn btn-primary btn-sm']) !!}
+            <!--{!! Form::button('Unassign user', ['class' => 'btn btn-primary btn-sm']) !!}-->
             </div>
-            {!!  Form::token()  . Form::close() !!}
+            {!!  Form::token() . Form::close() !!}
             </div>
       </div>
     </div>

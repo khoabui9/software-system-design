@@ -11,6 +11,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/project.css') }}"/>
    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('lib/jquery.ui.css') }}"/>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body data-gr-c-s-loaded="true">
   <div class="row">
