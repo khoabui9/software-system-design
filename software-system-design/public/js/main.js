@@ -1,6 +1,8 @@
 $(document).ready(function () {
     $( ".datepicker" ).each(function() {
-      $(this).datepicker();
+      $(this).datepicker({
+          dateFormat: 'dd-mm-yy',
+      });
     });
     $('.create').click(function () {
         var pid = $(this).parent(".mycard").attr("id");
@@ -31,6 +33,9 @@ $(document).ready(function () {
         var title = $('.title').val();
         var date_created = $('.date_created').val();
         var date_ended = $('.date_ended').val();
+        if (date_ended < date_created)
+            alert('wrong date');
+        else {
         var description = $('.description').val();
         var projectID = $(".lead").attr('id');
         var cardID = $(".lightbox_inner").attr('id');
@@ -58,8 +63,10 @@ $(document).ready(function () {
             headers: {
                 'X-CSRF-TOKEN': $('[name="_token"]').val()
             }
-        });       
+        });    
+        }   
         e.preventDefault();
+        
     });
 
     $('.open_edit_in').click(function () {
@@ -75,8 +82,7 @@ $(document).ready(function () {
         var user = $('#assi').val();
         $.ajax({
             type: 'POST',
-            url: '/task/assign/' + taskID,
-            cache: false,
+            url: '/task/assign/' + taskID, 
             data: {
                 'token': $('[name="_token"]').val(),
                 'task_id': taskID,
