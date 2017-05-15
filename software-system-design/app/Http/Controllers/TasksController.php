@@ -74,8 +74,8 @@ class TasksController extends Controller
 		$this->validate($request, [
 		            'name' => 'required',
 		            'description' => 'required',
-					'date_created' => 'required',
-					'date_ended' => 'required'
+					'date_created'      => 'required',
+    				'date_ended'        => 'required',
 		]);
 		//Task::create($task);
 		$task = new Task();
@@ -96,8 +96,8 @@ class TasksController extends Controller
 		$this->validate($request, [
 		            'name' => 'required|unique:tasks',
 		            'description' => 'required',
-					'date_created' => 'required',
-					'date_ended' => 'required'
+					'date_created'      => 'required',
+    				'date_ended'        => 'required',
 		]);
 		//Task::create($task);
 		$task = new Task();
@@ -124,5 +124,6 @@ class TasksController extends Controller
 		$findUser = User::findOrFail($request->assignUser);
 
 		$findTask->user()->save($findUser);
+		return redirect()->back();
 	}
 }
