@@ -39,7 +39,7 @@ class TasksController extends Controller
 	public function update($id, Request $request)
 	    {
 		$this->validate($request, [
-		            'name' => 'required|unique:tasks',
+		            'name' => 'required',
 		            'description' => 'required'
 		        ]);
 		$task = Task::findOrFail($id);
@@ -50,7 +50,7 @@ class TasksController extends Controller
 		
 		Session::flash('flash_message', 'Task successfully updated!');
 		
-		return redirect()->action('TasksController@show');
+			return redirect()->back();
 	}
 
 	public function updateCard($id, $id2) {
@@ -94,7 +94,7 @@ class TasksController extends Controller
 	public function createInProject(Request $request, $id1, $id2) {
 		$user = Auth::user();
 		$this->validate($request, [
-		            'name' => 'required|unique:tasks',
+		            'name' => 'required',
 		            'description' => 'required',
 					'date_created'      => 'required',
     				'date_ended'        => 'required',
@@ -122,7 +122,6 @@ class TasksController extends Controller
 		
 		$findTask = Task::findOrFail($id);
 		$findUser = User::findOrFail($request->assignUser);
-
 		$findTask->user()->save($findUser);
 		return redirect()->back();
 	}
