@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    $( ".datepicker" ).each(function() {
-      $(this).datepicker({
-          dateFormat: 'dd-mm-yy',
-      });
+    $(".datepicker").each(function () {
+        $(this).datepicker({
+            dateFormat: 'dd-mm-yy',
+        });
     });
     $('.create').click(function () {
         var pid = $(this).parent(".mycard").attr("id");
@@ -28,7 +28,25 @@ $(document).ready(function () {
     $('.close_alert').click(function () {
         $('.alert').css('display', 'none');
     });
-    $('#form').submit(function(e){
+    $('#formIn1').submit(function (e) {
+        console.log('aaaaa');
+        var date_created = $('.date_created1').val();
+        var date_ended = $('.date_ended1').val();
+        if (date_ended < date_created) {
+            alert('wrong date');
+            return false;
+        }
+    });
+    $('#formIn2').submit(function (e) {
+        console.log('aaaaa');
+        var date_created = $('.date_created2').val();
+        var date_ended = $('.date_ended2').val();
+        if (date_ended < date_created) {
+            alert('wrong date');
+            return false;
+        }
+    });
+    $('#form').submit(function (e) {
         $('.lightbox_outer').css('display', 'none');
         var title = $('.title').val();
         var date_created = $('.date_created').val();
@@ -36,62 +54,62 @@ $(document).ready(function () {
         if (date_ended < date_created)
             alert('wrong date');
         else {
-        var description = $('.description').val();
-        var projectID = $(".lead").attr('id');
-        var cardID = $(".lightbox_inner").attr('id');
-        request = $.ajax({
-            type: "POST",
-            url: "/task/create/" + projectID + "/" + cardID,
-            //datatype : 'json',
-            data: {
-                'token': $('[name="_token"]').val(),
-                'name': title, 
-                'description': description, 
-                'project_id': projectID,
-                'card_id': cardID,
-                'date_created': date_created, 
-                'date_ended': date_ended,
-            },
-            success: function(msg) {
-                window.location.reload();
-            },
-            error: function() {
-                alert("something went wrong\nAll fields required");
-            }
-        });
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('[name="_token"]').val()
-            }
-        });    
-        }   
+            var description = $('.description').val();
+            var projectID = $(".lead").attr('id');
+            var cardID = $(".lightbox_inner").attr('id');
+            request = $.ajax({
+                type: "POST",
+                url: "/task/create/" + projectID + "/" + cardID,
+                //datatype : 'json',
+                data: {
+                    'token': $('[name="_token"]').val(),
+                    'name': title,
+                    'description': description,
+                    'project_id': projectID,
+                    'card_id': cardID,
+                    'date_created': date_created,
+                    'date_ended': date_ended,
+                },
+                success: function (msg) {
+                    window.location.reload();
+                },
+                error: function () {
+                    alert("something went wrong\nAll fields required");
+                }
+            });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('[name="_token"]').val()
+                }
+            });
+        }
         e.preventDefault();
-        
+
     });
 
     $('.open_edit_in').click(function () {
         $('.lightbox_outer_task').css('display', 'flex');
         var tId = $(this).attr('id');
-        $('.b').attr('id',tId);  
+        $('.b').attr('id', tId);
     });
     $('.close_task').click(function () {
         $('.lightbox_outer_task').css('display', 'none');
     });
-    $('#formsub').submit(function(e){
+    $('#formsub').submit(function (e) {
         var taskID = $('.b').attr('id');
         var user = $('#assi').val();
         $.ajax({
             type: 'POST',
-            url: '/task/assign/' + taskID, 
+            url: '/task/assign/' + taskID,
             data: {
                 'token': $('[name="_token"]').val(),
                 'task_id': taskID,
                 'user_id': user,
             },
-            success: function(msg) {
+            success: function (msg) {
                 alert('success');
             },
-            error: function() {
+            error: function () {
                 alert("something went wrong\nAll fields required");
             }
         });
@@ -99,7 +117,7 @@ $(document).ready(function () {
             headers: {
                 'X-CSRF-TOKEN': $('[name="_token"]').val()
             }
-        });       
+        });
         e.preventDefault();
     });
 });
