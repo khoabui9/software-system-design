@@ -8,7 +8,7 @@ if (isset($_GET['ym'])) {
 }
 else {
 	// 	This month
-	    $ym = date('Y-m');
+		    $ym = date('Y-m');
 }
 
 // Check format
@@ -54,17 +54,17 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 	$week .= '</td>';
 	
 	// 	End of the week OR End of the month
-	    if ($str % 7 == 6 || $day == $day_count) {
+		    if ($str % 7 == 6 || $day == $day_count) {
 		
 		if($day == $day_count) {
 			// 			Add empty cell
-			            $week .= str_repeat('<td></td>', 6 - ($str % 7));
+						            $week .= str_repeat('<td></td>', 6 - ($str % 7));
 		}
 		
 		$weeks[] = '<tr>'.$week.'</tr>';
 		
 		// 		Prepare for new week
-		        $week = '';
+				        $week = '';
 		
 	}
 	

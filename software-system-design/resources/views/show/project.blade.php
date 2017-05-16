@@ -8,7 +8,8 @@
         <a href="/project/showEdit/{{$project->id}}" class="edit_project btn-sm btn-primary">Edit</a>
         </div>
        <br>
-    
+    <div class="col-sm-12">
+     <br>
       @if($errors->any())
                 <div class="alert alert-danger">
                  <a><span class="close_alert pull-right btn btn-danger">X</span></a>
@@ -23,12 +24,13 @@
                 <a><span class="close_alert pull-right btn btn-danger">X</span></a>
                 </div>
      @endif
+     </div>
      <hr>
      <br>
         <div class="card_wrapper col-sm-4">
         <div class="mycard c1" id="1">
             <div class="card_header">
-               <h5 class="header_text">TODO</h5>
+               <h4 class="header_text">TODO</h4>
             </div>
             <a class="create">Create new task</a>
             @foreach($taskss as $task)
@@ -80,7 +82,7 @@
         <div class="card_wrapper col-sm-4">
         <div class="mycard c3" id="3">
             <div class="card_header">
-                <h5 class="header_text">DONE</h5>
+                <h4 class="header_text">DONE</h4>
             </div>
             <a class="create">Create new task</a>
             @foreach($taskss as $task)
@@ -104,7 +106,6 @@
         </div>
         </div>
         <br>
-       
     </div>
     <div class="lightbox_outer">
       <div class="lightbox_inner">
@@ -113,7 +114,6 @@
             {!! Form::open([
                 'id'  => 'form'
             ]) !!}
-            
             <div class="form-group">
                 {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
                 {!! Form::text('name', null, ['class' => 'title form-control']) !!}
@@ -175,14 +175,10 @@
                 @endforeach
             </select>
             {!! Form::submit('Assign user', ['class' => 'btn btn-primary btn-sm']) !!}
-            <!--{!! Form::button('Unassign user', ['class' => 'btn btn-primary btn-sm']) !!}-->
+            {!! Form::button('Unassign user', ['class' => 'btn btn-primary btn-sm']) !!}
             </div>
             {!!  Form::token() . Form::close() !!}
             </div>
       </div>
     </div>
-
-    <!--<div class="pull-right">
-        <a href="/project/delete/{{$project->id}}" class="btn btn-danger">Delete</a>
-    </div>-->
 @stop
