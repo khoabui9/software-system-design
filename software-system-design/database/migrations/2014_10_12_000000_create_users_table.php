@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            // $table->integer('project_id');
-            // $table->foreign('project_id')->references('id')->on('projects');
+           $table->integer('role')->unsigned();
+			$table->foreign('role')->references('id')
+			            ->on('user_role')->onDelete('cascade');
             // //$table->primary('id');
             // $table->integer('task_id');
             // $table->foreign('task_id')->references('id')->on('tasks');
