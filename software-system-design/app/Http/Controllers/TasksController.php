@@ -18,12 +18,19 @@ class TasksController extends Controller
 		$user = Auth::user();
 		$id = Auth::id();
 		if(Auth::check()) {
+			$role = $user->role;
+			if ($role != 2) {
 			$query =  DB::table('user_task')
 			->select('tasks.*')
 		        ->where('user_id', '=', $id)
 		        ->join('tasks', 'tasks.id', '=', 'user_task.task_id');
 		        $tasks = $query->get();
 			return view('dashboard.tasks')->with('tasks', $tasks);
+			}
+			else {
+				$tasks = Task::all();
+				return view('dashboard.tasksadmin')->with('tasks', $tasks);
+			}
 		}
 		else {
 			return redirect()->action('HomeController@index');
@@ -37,7 +44,8 @@ class TasksController extends Controller
 		//return view('show.project')->withProject($project);
 	}
 	public function update($id, Request $request)
-	    {
+	{
+		if(Auth::check()) {
 		$this->validate($request, [
 		            'name' => 'required',
 		            'description' => 'required'
@@ -51,25 +59,40 @@ class TasksController extends Controller
 		Session::flash('flash_message', 'Task successfully updated!');
 		
 			return redirect()->back();
+					}
+		else {
+			return redirect()->action('HomeController@index');
+		}
 	}
 
 	public function updateCard($id, $id2) {
+		if(Auth::check()) {
 		$task = Task::findOrFail($id);
 
 		$task->card_id = $id2;
 
 		$task->save();
+				}
+		else {
+			return redirect()->action('HomeController@index');
+		}
 	}
 	
 	public function delete($id) {
+		if(Auth::check()) {
 		$t = Task::findOrFail($id);
 		
 		$t->delete();
 		
 		return redirect()->back();
+				}
+		else {
+			return redirect()->action('HomeController@index');
+		}
 	}
 	
 	public function create(Request $request) {
+		if(Auth::check()) {
 		$user = Auth::user();
 		$this->validate($request, [
 		            'name' => 'required',
@@ -90,8 +113,13 @@ class TasksController extends Controller
         $task->user()->save($user); 
 		Session::flash('flash_message', 'Task successfully added!');
 		return redirect()->back();
+				}
+		else {
+			return redirect()->action('HomeController@index');
+		}
 	}
 	public function createInProject(Request $request, $id1, $id2) {
+		if(Auth::check()) {
 		$user = Auth::user();
 		$this->validate($request, [
 		            'name' => 'required',
@@ -112,8 +140,13 @@ class TasksController extends Controller
         $task->user()->save($user); 
 		Session::flash('flash_message', 'Task successfully added!');
 		return redirect()->back();
+				}
+		else {
+			return redirect()->action('HomeController@index');
+		}
 	}
 	public function assignUser(Request $request, $id) {
+		if(Auth::check()) {
 		if($request->assignUser==null)
 		    return redirect()->back();
 		$this->validate($request, [
@@ -124,5 +157,9 @@ class TasksController extends Controller
 		$findUser = User::findOrFail($request->assignUser);
 		$findTask->user()->save($findUser);
 		return redirect()->back();
+				}
+		else {
+			return redirect()->action('HomeController@index');
+		}
 	}
 }

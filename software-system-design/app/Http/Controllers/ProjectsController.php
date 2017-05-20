@@ -21,26 +21,39 @@ class ProjectsController extends Controller
 		$user = Auth::user();
 		$id = Auth::id();
 		if(Auth::check()) {
-			$query =  DB::table('user_project')
-			->select('projects.*')
-		        ->where('user_id', '=', $id)
-		        ->join('projects', 'projects.id', '=', 'user_project.project_id');
-		        $projects = $query->get();
-			return view('dashboard.projects')->with('projects', $projects);
+		$role = $user->role;
+		if ($role == 2) {
+		 $projects = Project::all();
+		 return view('dashboard.projectsadmin')->with('projects', $projects);
 		}
 		else {
-			return redirect()->action('HomeController@index');
+		$query =  DB::table('user_project')
+		->select('projects.*')
+		->where('user_id', '=', $id)
+		->join('projects', 'projects.id', '=', 'user_project.project_id');
+		$projects = $query->get();
+		return view('dashboard.projects')->with('projects', $projects);
+		}
+		}
+		else {
+		   return redirect()->action('HomeController@index');
 		}
 	}
 	public function delete($id) {
+		if(Auth::check()) {
 		$p = Project::findOrFail($id);
 		
 		$p->delete();
 		
 		return redirect()->action('ProjectsController@show');
+		}
+		else {
+		   return redirect()->action('HomeController@index');
+		}
 	}
 	
 	public function create(Request $request) {
+		if(Auth::check()) {
 		$user = Auth::user();
 		$this->validate($request, [
 		            'name' => 'required|unique:projects',
@@ -58,15 +71,25 @@ class ProjectsController extends Controller
 		
 		Session::flash('flash_message', 'Task successfully added!');
 		return redirect()->action('ProjectsController@show');
+		}
+		else {
+		   return redirect()->action('HomeController@index');
+		}
 	}
 	public function update(Request $request, $id) {
+		if(Auth::check()) {
 		$p = Project::findOrFail($id);
 		$input = $request->all();
 		$p->fill($input)->save();
 		Session::flash('flash_message', 'Project successfully updated!');
 		return redirect()->back();
+		}
+		else {
+		   return redirect()->action('HomeController@index');
+		}
 	}
 	public function showOne($id) {
+		if(Auth::check()) {
 		$project = Project::findOrFail($id);
 		$users = DB::table('user_project')
 		        ->where('project_id', '=', $id)
@@ -80,15 +103,20 @@ class ProjectsController extends Controller
 		$restUsers = DB::table('users')->whereIn('id',$ids1)->whereNotIn('id',$ids2)->get();
 		$taskss = DB::table('tasks')
 			 ->where('project_id', '=', $id)
-			 ->get();	 
+			 ->get();	
 		return view('show.project')->withProject($project)
 		        ->with('users', $users)
 		        ->with('restUsers', $restUsers)
-			->with('taskss',$taskss);
+				->with('taskss',$taskss);
+		}
+		else {
+		   return redirect()->action('HomeController@index');
+		}
 	}
 	
 	
 	public function showEdit($id) {
+		if(Auth::check()) {
 		$project = Project::findOrFail($id);
 		$users = DB::table('user_project')
 		        ->where('project_id', '=', $id)
@@ -103,9 +131,14 @@ class ProjectsController extends Controller
 		return view('show.projectEdit')->withProject($project)
 		        ->with('users', $users)
 			->with('restUsers', $restUsers);
+			}
+		else {
+		   return redirect()->action('HomeController@index');
+		}
 	}
 	
 	public function removeUser($id, $email) {
+		if(Auth::check()) {
 		$userId=DB::table('users')
 		        ->where('email', '=', $email)
 		        ->select('id')
@@ -115,8 +148,14 @@ class ProjectsController extends Controller
 		        ->where('user_id', '=', $userId->id)
 		        ->delete();
 		return redirect()->back();
+		}
+		else {
+		   return redirect()->action('HomeController@index');
+		}
 	}
 	public function addUser(Request $request, $id) {
+
+		if(Auth::check()) {
 		if($request->addUser==null)
 		                return redirect()->back();
 		$this->validate($request, [
@@ -130,6 +169,10 @@ class ProjectsController extends Controller
 		            'project_id' => $id
 		        ]);
 		return redirect()->back();
+		}
+		else {
+		   return redirect()->action('HomeController@index');
+		}
 	}
 	
 	public function sort() {
