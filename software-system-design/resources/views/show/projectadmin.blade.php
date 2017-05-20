@@ -1,4 +1,4 @@
-@extends('layouts.show')
+@extends('layouts.admin2')
 @section('content')
         <h4>{{ $project->name }}</h4>
         <p id="{{$project->id}}" class="lead">{{ $project->description }}</p>
@@ -140,9 +140,7 @@
           <div class="a">
         <a class="btn btn-danger btn-sm close_task pull-right">X</a>
         <br>
-        @foreach($taskss as $task)
             {!! Form::open([
-           
                 'url' => '/task/update/'.$task->id,
                 'method' => 'POST'
             ]) !!}
@@ -163,7 +161,6 @@
             </div>
             {!! Form::submit('Update task', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
-            @endforeach
             </div>
             <div class="b">
             {!! Form::open([
