@@ -21,6 +21,7 @@
       !!}
       </div>
     {!! Form::close() !!}
+    <div class="col-sm-12">
      @if($errors->any())
                 <div class="alert alert-danger">
                 <a><span class="close_alert pull-right btn btn-danger">X</span></a>
@@ -35,6 +36,7 @@
                     <a><span class="close_alert pull-right btn btn-danger"></span></a>
                 </div>
             @endif
+            </div>
     <br>
      <hr>
       @foreach($projects as $project)
