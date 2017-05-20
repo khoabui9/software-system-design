@@ -11,8 +11,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'MainController@index');
+Route::get('/index', 'MainController@main');
+Route::get('/about', 'MainController@about');
+Route::get('/contact', 'MainController@contact');
 
 Route::get('/projects', 'ProjectsController@show');
 Route::get('/project/showEdit/{id}', 'ProjectsController@showEdit');
@@ -27,7 +29,10 @@ Route::post('/sort', 'ProjectsController@sort');
 Route::get('/tasks', 'TasksController@show');
 Route::get('/task/delete/{id}', 'TasksController@delete');
 Route::post('/task/create', 'TasksController@create');
+Route::post('/task/create/{id1}/{id2}', 'TasksController@createInProject');
 Route::post('/task/update/{id}', 'TasksController@update');
+Route::post('/task/{id1}/updateCard/{id2}', 'TasksController@updateCard');
+Route::post('/task/assign/{id}', 'TasksController@assignUser');
 
 Route::get('/users', 'UsersController@show');
 Route::get('/user/delete/{email}', 'UsersController@delete');

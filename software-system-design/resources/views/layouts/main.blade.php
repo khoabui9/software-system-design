@@ -8,7 +8,7 @@ if (isset($_GET['ym'])) {
 }
 else {
 	// 	This month
-	    $ym = date('Y-m');
+		    $ym = date('Y-m');
 }
 
 // Check format
@@ -54,17 +54,17 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 	$week .= '</td>';
 	
 	// 	End of the week OR End of the month
-	    if ($str % 7 == 6 || $day == $day_count) {
+		    if ($str % 7 == 6 || $day == $day_count) {
 		
 		if($day == $day_count) {
 			// 			Add empty cell
-			            $week .= str_repeat('<td></td>', 6 - ($str % 7));
+						            $week .= str_repeat('<td></td>', 6 - ($str % 7));
 		}
 		
 		$weeks[] = '<tr>'.$week.'</tr>';
 		
 		// 		Prepare for new week
-		        $week = '';
+				        $week = '';
 		
 	}
 	
@@ -86,12 +86,37 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 		   <script src="{{asset('js/app.js')}}"></script>
 </head>
 <body>
-	<div class="row">
-		<div class="header col-sm-12">
-			<h1 class="app-name">JustCollab</h1>
-		</div>
-		<div class="something col-sm-12"></div>
-	</div>
+ <div class="row">
+<div class="col-sm-12">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">JustCollab</a>
+    </div>
+	  <ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					{{ Auth::user()->name }} <span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" role="menu">
+					<li>
+						<a href="{{ route('logout') }}"
+							onclick="event.preventDefault();
+										document.getElementById('logout-form').submit();">
+							Logout
+						</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							{{ csrf_field() }}
+						</form>
+					</li>
+				</ul>
+			</li>
+	</ul>
+  </div>
+  	<div class="something col-sm-12"></div>
+</nav>
+</div>
+</div>
 	<div class="row">
 		<div class="dashboard col-sm-12">
 			<div class="dashboard-left col-sm-3">
@@ -99,7 +124,6 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 				  <a href="#"><li>Dashboard</li></a>
 				  <a href="projects"><li>Projects</li></a>
 				  <a href="tasks"><li>Tasks</li></a>
-				  <a href="users"><li>Users</li></a>
 				</ul> 
 				<hr>
 					<h3><a href="?ym=<?php echo $prev;
