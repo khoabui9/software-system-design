@@ -19,7 +19,6 @@
     </script>
 </head>
 <body>
-    <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -72,10 +71,9 @@
             </div>
             	<div class="something col-sm-12"></div>
         </nav>
+     <div class="row">
         @yield('content')
-        
-    </div>
-    
+        </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
