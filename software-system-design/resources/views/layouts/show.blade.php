@@ -81,7 +81,5 @@
       <script src="{{asset('lib/jquery.min.js')}}"></script>
       <script src="{{asset('lib/jquery.ui.min.js')}}"></script>
        <script src="{{asset('js/dragdrop.js')}}"></script>
-        
-    
          <script src="{{asset('js/calendar.js')}}"></script>
 </body></html>
