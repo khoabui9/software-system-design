@@ -37,6 +37,9 @@ Route::get('/user/delete/{email}', 'UsersController@delete');
 Route::post('/user/create', 'UsersController@create');
 Route::post('/user/update/{email}', 'UsersController@update');
 
+Route::post('/chat/message/{id}', 'ProjectsController@sendMessage');
+
+
 // Route::get('/', 'TasksController@showTasks');
 // Route::get('/ProjectsList', function () {
 	// 	return redirect()->action('ProjectsController@showProjects');
