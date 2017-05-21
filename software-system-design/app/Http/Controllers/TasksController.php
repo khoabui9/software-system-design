@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\View;
 use App\Project;
 use App\UserTask;
 use App\Task;
@@ -36,6 +38,29 @@ class TasksController extends Controller
 			return redirect()->action('HomeController@index');
 		}
 		//return view('dashboard.tasks')->with('tasks', $tasks);
+	}
+
+	public function showInCalendar(){
+			$user = Auth::user();
+		$id = Auth::id();
+		if(Auth::check()) {
+			$role = $user->role;
+			if ($role != 2) {
+			$query =  DB::table('user_task')
+			->select('tasks.*')
+		        ->where('user_id', '=', $id)
+		        ->join('tasks', 'tasks.id', '=', 'user_task.task_id');
+		        $tasks = $query->get();
+		return view('show.calendar')->with('tasks', $tasks);
+			}
+			else {
+				$tasks = Task::all();
+				return view('show.calendar')->with('tasks', $tasks);
+			}
+		}
+		else {
+			return redirect()->action('HomeController@index');
+		}
 	}
 	
 	public function showOne($id) {
