@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $(".datepicker").each(function () {
         $(this).datepicker({
-            dateFormat: 'dd-mm-yy',
+            dateFormat: 'yy-mm-dd',
         });
     });
     $('.create').click(function () {
