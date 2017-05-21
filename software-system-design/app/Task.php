@@ -15,6 +15,7 @@ class Task extends Model
         'card_id'
         ];
     //
+
     public function user() {
         return $this->belongsToMany('App\User', 'user_task', 
         'task_id', 'user_id')->withTimestamps();

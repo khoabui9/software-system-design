@@ -1,16 +1,24 @@
 <html lang="en" class="gr__v4-alpha_getbootstrap_com"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{csrf_token() }}">
     <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" type="text/css" href="{{asset('fullcalendar/dist/fullcalendar.css')}}"/>
+    <script src="{{asset('jquery/dist/jquery.min.js')}}"></script>
+       <script src="{{asset('moment/moment.js')}}"></script>
+       <script src="{{asset('fullcalendar/dist/fullcalendar.js')}}"></script>
+    
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
   <link rel="stylesheet" type="text/css" href="{{ asset('css/project.css') }}"/>
    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('lib/jquery.ui.css') }}"/>
+  
+    <link rel="stylesheet" type="text/css" href="{{ asset('lib/jquery.ui.min.css') }}"/>
+       <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body data-gr-c-s-loaded="true">
   <div class="row">
@@ -30,6 +38,7 @@
         <li class=""><a href="/">Dashboard</a></li>
         <li><a href="/projects">Projects</a></li>
         <li><a href="/tasks">Tasks</a></li>
+         <li><a href="/calendar">Calendar</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -63,6 +72,7 @@
         </div>
     </div>
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -71,4 +81,7 @@
       <script src="{{asset('lib/jquery.min.js')}}"></script>
       <script src="{{asset('lib/jquery.ui.min.js')}}"></script>
        <script src="{{asset('js/dragdrop.js')}}"></script>
+        
+    
+         <script src="{{asset('js/calendar.js')}}"></script>
 </body></html>

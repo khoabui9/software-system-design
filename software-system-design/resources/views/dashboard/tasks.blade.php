@@ -31,7 +31,8 @@
           <span class="edit edit{{$task->id}}">
              {!! Form::open([
                 'url' => '/task/update/'.$task->id,
-                'method' => 'POST'
+                'method' => 'POST',
+                'id' => 'formIn1'
             ]) !!}
             <div class="form-group">
                 {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
@@ -39,9 +40,9 @@
             </div>
             <div class="form-group">
                 {!! Form::label('start', 'Start:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_created', $task->date_created, array('class' => 'datepicker')) !!}
+                {!! Form::text('date_created', $task->date_created, array('class' => 'datepicker date_created1')) !!}
                 {!! Form::label('end', 'End:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_ended', $task->date_ended, array('class' => 'datepicker')) !!}
+                {!! Form::text('date_ended', $task->date_ended, array('class' => 'datepicker date_ended1')) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
@@ -63,10 +64,11 @@
 </div>
 <div class="lightbox_outer">
       <div class="lightbox_inner">
-        <a class="close">X</a>
+        <a class="btn btn-danger btn-sm close">X</a>
         <br>
             {!! Form::open([
-                'url' => '/task/create'
+                'url' => '/task/create',
+                'id' => 'formIn2'
             ]) !!}
             <div class="form-group">
                 {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
@@ -74,9 +76,9 @@
             </div>
             <div class="form-group">
                 {!! Form::label('start', 'Start:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_created', null, array('class' => 'datepicker')) !!}
+                {!! Form::text('date_created', null, array('class' => 'datepicker date_created2')) !!}
                 {!! Form::label('end', 'End:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_ended', null, array('class' => 'datepicker')) !!}
+                {!! Form::text('date_ended', null, array('class' => 'datepicker date_ended2')) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}

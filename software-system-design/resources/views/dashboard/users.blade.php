@@ -50,7 +50,7 @@
 </div>
 <div class="lightbox_outer">
       <div class="lightbox_inner col-sm-5">
-        <a class="close">X</a>
+        <a class="btn btn-danger btn-sm close">X</a>
         <br>
             {!! Form::open([
                 'url' => '/user/create'
@@ -60,6 +60,8 @@
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
                  {!! Form::label('email', 'Email:', ['class' => 'control-label']) !!}
                 {!! Form::text('email', null, ['class' => 'form-control']) !!}
+                  {!! Form::label('password', 'Password:', ['class' => 'control-label']) !!}
+                {!! Form::password('password', null, ['class' => 'form-control',  'type' => 'password']) !!}
             </div>
             {!! Form::submit('Create New user', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}

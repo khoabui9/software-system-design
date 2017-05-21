@@ -21,6 +21,7 @@
       !!}
       </div>
     {!! Form::close() !!}
+    <div class="col-sm-12">
      @if($errors->any())
                 <div class="alert alert-danger">
                 <a><span class="close_alert pull-right btn btn-danger">X</span></a>
@@ -35,6 +36,7 @@
                     <a><span class="close_alert pull-right btn btn-danger"></span></a>
                 </div>
             @endif
+            </div>
     <br>
      <hr>
       @foreach($projects as $project)
@@ -50,11 +52,10 @@
     </div>
       @endforeach
       <div class="pagination col-sm-12">
-     
       </div>
       <div class="lightbox_outer">
       <div class="lightbox_inner">
-        <a class="close">X</a>
+        <a class="btn btn-danger btn-sm close">X</a>
         <br>
             {!! Form::open([
                 'method' => 'POST',

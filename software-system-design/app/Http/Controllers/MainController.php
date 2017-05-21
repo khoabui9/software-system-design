@@ -15,6 +15,8 @@ class MainController extends Controller
 		$user = Auth::user();
 		$id = Auth::id();
 		if(Auth::check()) {
+			$role = $user->role;
+			if ($role == 1) {
 			$projects =  DB::table('user_project')
 				->select('projects.*')
 		        ->where('user_id', '=', $id)
@@ -28,14 +30,26 @@ class MainController extends Controller
 			return view('dashboard.dashboard')
 		            ->with('projects', $projects)
 		            ->with('tasks', $tasks);
+			}
+			else if ($role == 2) {
+				$projects = Project::all();
+				$tasks = Task::all();
+					return view('show.admin')
+		            ->with('projects', $projects)
+		            ->with('tasks', $tasks);
+			}
 		}
 		else {
-			return redirect()->action('HomeController@index');
+			return view('show.main');
 		}
-		// $projects = Project::all();
-		// $tasks = Task::all();
-		// return view('dashboard.dashboard')
-		//             ->with('projects', $projects)
-		//             ->with('tasks', $tasks);
+	}
+	public function about() {
+		return view('show.about');
+	}
+	public function contact() {
+		return view('show.contact');
+	}
+	public function main() {
+		return view('show.main');
 	}
 }
