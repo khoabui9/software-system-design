@@ -32,6 +32,7 @@
         <li class=""><a href="/">Dashboard</a></li>
         <li><a href="projects">Projects</a></li>
         <li><a href="tasks">Tasks</a></li>
+         <li><a href="/calendar">Calendar</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

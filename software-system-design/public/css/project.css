@@ -5,7 +5,9 @@ body {
 	padding: 0
 }
 
-
+.navbar {
+    margin-bottom: 0;
+}
 .lightbox_inner {
     margin-top: 5%;
     height: 450px;

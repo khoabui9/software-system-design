@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    console.log("nhu nao");
     var draggableOptions = {
         cancel: "a.ui-icon",
         revert: true,

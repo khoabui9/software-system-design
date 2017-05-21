@@ -39,6 +39,8 @@ Route::get('/user/delete/{email}', 'UsersController@delete');
 Route::post('/user/create', 'UsersController@create');
 Route::post('/user/update/{email}', 'UsersController@update');
 
+Route::get('/calendar', 'TasksController@showInCalendar');
+
 // Route::get('/', 'TasksController@showTasks');
 // Route::get('/ProjectsList', function () {
 	// 	return redirect()->action('ProjectsController@showProjects');

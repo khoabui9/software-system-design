@@ -124,6 +124,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 				  <a href="#"><li>Dashboard</li></a>
 				  <a href="projects"><li>Projects</li></a>
 				  <a href="tasks"><li>Tasks</li></a>
+				  <a href="/calendar"><li>Calendar</li></a>
 				</ul> 
 				<hr>
 					<h3><a href="?ym=<?php echo $prev;
