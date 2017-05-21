@@ -18,6 +18,7 @@ Route::get('/contact', 'MainController@contact');
 
 Route::get('/projects', 'ProjectsController@show');
 Route::get('/project/showEdit/{id}', 'ProjectsController@showEdit');
+Route::get('/project/chat/{id}', 'ProjectsController@showChat');
 Route::get('/project/{id}', 'ProjectsController@showOne');
 Route::get('/project/delete/{id}', 'ProjectsController@delete');
 Route::get('/project/removeUser/{id}/{email}', 'ProjectsController@removeUser');
@@ -39,7 +40,12 @@ Route::get('/user/delete/{email}', 'UsersController@delete');
 Route::post('/user/create', 'UsersController@create');
 Route::post('/user/update/{email}', 'UsersController@update');
 
+
+Route::post('/chat/message/{id}', 'ProjectsController@sendMessage');
+
+
 Route::get('/calendar', 'TasksController@showInCalendar');
+
 
 // Route::get('/', 'TasksController@showTasks');
 // Route::get('/ProjectsList', function () {

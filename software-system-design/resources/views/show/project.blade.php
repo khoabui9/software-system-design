@@ -106,6 +106,12 @@
         </div>
         </div>
         <br>
+        <div class="col-sm-12">
+              <hr>
+        <a href="/projects" class="btn btn-info">Back</a>
+        <a href="/project/showEdit/{{$project->id}}" class="edit_project btn btn-primary">Edit</a>
+        <a href="/project/chat/{{$project->id}}" class="btn btn-primary">Chat</a>
+        </div>
     </div>
     <div class="lightbox_outer">
       <div class="lightbox_inner">

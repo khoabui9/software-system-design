@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
 		$this->call(TasksTableSeeder::class);
 		$this->call(UserProjectTableSeeder::class);
 		$this->call(UserTaskTableSeeder::class);
-	
+		$this->call(ChatsTableSeeder::class);
+		$this->call(UserChatTableSeeder::class);
+		$this->call(MessagesTableSeeder::class);
+		$this->call(CardsTableSeeder::class);
 	}
 }

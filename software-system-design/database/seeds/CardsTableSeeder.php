@@ -11,7 +11,6 @@ class CardsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         DB::table('cards')->delete();
 		$cards = [
 		            [

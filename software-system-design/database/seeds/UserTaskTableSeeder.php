@@ -11,7 +11,7 @@ class UserTaskTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+    	DB::table('user_task')->delete();
           $tasks = [
 		            [
 		               'user_id' => 3,

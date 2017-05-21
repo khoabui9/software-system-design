@@ -11,7 +11,7 @@ class UserProjectTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('user_project')->delete();
         $projects = [
 		            [
 		               'user_id' => 3,

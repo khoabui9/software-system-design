@@ -10,6 +10,7 @@ use App\Project;
 use App\UserProject;
 use App\Task;
 use App\Card;
+use App\Chat;
 use App\User;
 
 
@@ -64,12 +65,23 @@ class ProjectsController extends Controller
 		$project->description = $request->description;
 		$project->save();
 		
-	 	$project->user()->save($user); 
+	 	$project->user()->save($user);
+		$chat = new Chat();
+		$chat->name=$request->name;
+		$chat->project_id=$project->id;
+		$chat->save();
+		$chatUsers =[
+		            [
+		               'user_id' => $user->id,
+			       'chat_id' => $chat->id
+		            ]
+		        ];
+		DB::table('user_chat')->insert($chatUsers);
 		// $project = $request->all();
 		
 		// Project::create($project);
 		
-		Session::flash('flash_message', 'Task successfully added!');
+		Session::flash('flash_message', 'Project successfully created!');
 		return redirect()->action('ProjectsController@show');
 		}
 		else {
@@ -107,6 +119,7 @@ class ProjectsController extends Controller
 		return view('show.project')->withProject($project)
 		        ->with('users', $users)
 		        ->with('restUsers', $restUsers)
+
 				->with('taskss',$taskss);
 		}
 		else {
@@ -136,6 +149,31 @@ class ProjectsController extends Controller
 		   return redirect()->action('HomeController@index');
 		}
 	}
+
+	public function showChat($id) {
+		$chatId=DB::table('chats')
+		        ->where('project_id', '=', $id)
+		        ->select('id')->first();
+		$chat = Chat::findOrFail($chatId->id);
+		$messages = DB::table('messages')
+			->join('chats', 'chats.id', '=', 'chat_id')
+			->where('chats.project_id', '=', $id)
+			->join('users','messages.user_id', '=', 'users.id')
+			->orderBy('messages.id')
+			->select('users.name', 'messages.created_at', 'content')
+		        ->get();
+		$chatId=DB::table('chats')
+		        ->where('project_id', '=', $id)
+		        ->select('id')->first();
+		$users = DB::table('user_chat')
+		        ->where('chat_id', '=', $chatId->id)
+			->join('users', 'users.id', '=', 'user_id')
+		        ->get();
+		return view('show.projectChat')
+		        ->with('chat', $chat)
+		        ->with('users', $users)
+			->with('messages', $messages);
+	}
 	
 	public function removeUser($id, $email) {
 		if(Auth::check()) {
@@ -145,6 +183,13 @@ class ProjectsController extends Controller
 		        ->first();
 		$user = DB::table('user_project')
 		        ->where('project_id', '=', $id)
+		        ->where('user_id', '=', $userId->id)
+		        ->delete();
+		$chatId=DB::table('chats')
+		        ->where('project_id', '=', $id)
+		        ->select('id')->first();
+		$chat = DB::table('user_chat')
+		        ->where('chat_id', '=', $chatId->id)
 		        ->where('user_id', '=', $userId->id)
 		        ->delete();
 		return redirect()->back();
@@ -168,6 +213,13 @@ class ProjectsController extends Controller
 		        [   'user_id' => $userId->id,
 		            'project_id' => $id
 		        ]);
+		$chatId=DB::table('chats')
+		        ->where('project_id', '=', $id)
+		        ->select('id')->first();	
+		DB::table('user_chat')->insert(
+		        [   'user_id' => $userId->id,
+		            'chat_id' => $chatId->id
+		        ]);
 		return redirect()->back();
 		}
 		else {
@@ -175,6 +227,23 @@ class ProjectsController extends Controller
 		}
 	}
 	
+	public function sendMessage(Request $request, $id){
+		if($request->message==null)
+		       return redirect()->back();
+		       
+		$message = [
+			[            
+		                'content' => $request->message,
+		                'user_id' => Auth::user()->id,
+			        'chat_id' => $id,
+		                'created_at' => date("Y-m-d H:i:s")
+			]
+		];
+
+		DB::table('messages')->insert($message);
+		return redirect()->back();
+	}
+
 	public function sort() {
 		// $sortby = Input::get('sortby');
 		// if ($sortby == 'date')

@@ -124,6 +124,35 @@ form {
 .header_text {
     width: 80%;
 }
+
+.chat-container{
+    background-color: whitesmoke !important;
+    border: 3px solid #963019; 
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.chat{ 
+    border-left: solid 1px #963019;   
+}
+.chat-messages{
+    height:50vh;
+    overflow-y: scroll;
+}
+.message{
+    padding-left: 50px;
+    background-color: lightsteelblue;
+    margin-top: 10px;
+    border-radius: 20px;
+    color: black;
+    word-wrap: break-word;
+    border: 1px solid gray;
+}
+.message-date{
+    text-align: right;
+    padding-right: 20px;
+    color: darkslategray;
+}
+
 .project_container {
     height: auto;
 }
@@ -208,9 +237,4 @@ footer {
     height: 50%;
     text-align: center;
 }
-
-
-
-
-
 
