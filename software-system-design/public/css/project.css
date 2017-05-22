@@ -107,11 +107,12 @@ form {
 }
 
 .card_wrapper {
-    height: 100%;
+    height: auto;
     box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
     white-space: nowrap;
+    margin-top: 10px;
 }
 .card-task {
     border-radius: 5px;
@@ -151,10 +152,6 @@ form {
     text-align: right;
     padding-right: 20px;
     color: darkslategray;
-}
-
-.project_container {
-    height: auto;
 }
 
 .img-center {

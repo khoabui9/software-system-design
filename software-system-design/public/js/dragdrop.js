@@ -12,6 +12,11 @@ $(document).ready(function () {
         }
     });
 
+    $('.fc-event-container').draggable({
+    revert: true,      // immediately snap back to original position
+    revertDuration: 0  //
+    });
+
     $('.mycard').droppable();
 
     var codes = {

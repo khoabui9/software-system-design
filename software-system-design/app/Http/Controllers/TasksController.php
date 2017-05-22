@@ -90,6 +90,23 @@ class TasksController extends Controller
 		}
 	}
 
+		public function updateDate($title, $start, $end)
+	{
+		if(Auth::check()) {
+		$task = Task::findOrFail($title);
+		
+		$task->date_created = $start;
+		$task->date_ended = $end;
+		$task->save();
+		Session::flash('flash_message', 'Task successfully updated!');
+		
+		return redirect()->back();
+		}
+		else {
+			return redirect()->action('HomeController@index');
+		}
+	}
+
 	public function updateCard($id, $id2) {
 		if(Auth::check()) {
 		$task = Task::findOrFail($id);

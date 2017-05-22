@@ -91,6 +91,7 @@ $(document).ready(function () {
         $('.lightbox_outer_task').css('display', 'flex');
         var tId = $(this).attr('id');
         $('.b').attr('id', tId);
+        $('.a').attr('id', tId);
     });
     $('.close_task').click(function () {
         $('.lightbox_outer_task').css('display', 'none');
@@ -120,7 +121,42 @@ $(document).ready(function () {
         });
         e.preventDefault();
     });
+
+
+$('#formsub2').submit(function (e) {
+        var taskID = $('.a').attr('id');
+        var name = $('.t').val();
+         var start = $('.s').val();
+          var end = $('.e').val();
+           var desc = $('.d').val();
+        $.ajax({
+            type: 'POST',
+            url: '/task/update/' + taskID,
+            data: {
+                'token': $('[name="_token"]').val(),
+                'name': name,
+                'date_created': start,
+                'date_ended': end,
+                'description': desc,
+            },
+            success: function (msg) {
+                alert("success");
+               window.location.reload();              
+            },
+            error: function () {
+                alert("something went wrong\nAll fields required");
+            }
+        });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('[name="_token"]').val()
+            }
+        });
+        e.preventDefault();
+    });
+    
 });
+
 
 // Wait for the HTML document to be loaded completely
 $(function() {

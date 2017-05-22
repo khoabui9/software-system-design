@@ -4,8 +4,9 @@
         <p id="{{$project->id}}" class="lead">{{ $project->description }}</p>
           <div class="col-sm-12">
         <hr>
-        <a href="/projects" class="btn-sm btn-info">Back</a>
-        <a href="/project/showEdit/{{$project->id}}" class="edit_project btn-sm btn-primary">Edit</a>
+        <a href="/projects" class="btn-sm btn btn-info">Back</a>
+        <a href="/project/showEdit/{{$project->id}}" class="edit_project btn btn-sm btn-primary">Edit</a>
+        <a href="/project/chat/{{$project->id}}" class="btn btn-primary btn-sm">Chat</a>
         </div>
        <br>
     <div class="col-sm-12">
@@ -108,9 +109,6 @@
         <br>
         <div class="col-sm-12">
               <hr>
-        <a href="/projects" class="btn btn-info">Back</a>
-        <a href="/project/showEdit/{{$project->id}}" class="edit_project btn btn-primary">Edit</a>
-        <a href="/project/chat/{{$project->id}}" class="btn btn-primary">Chat</a>
         </div>
     </div>
     <div class="lightbox_outer">
@@ -146,30 +144,27 @@
           <div class="a">
         <a class="btn btn-danger btn-sm close_task pull-right">X</a>
         <br>
-        @foreach($taskss as $task)
             {!! Form::open([
-           
-                'url' => '/task/update/'.$task->id,
-                'method' => 'POST'
+                'id'  => 'formsub2'
             ]) !!}
             <div class="form-group">
                 {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
-                {!! Form::text('name', $task->name, ['class' => 'form-control']) !!}
+                {!! Form::text('name', null, ['class' => 't form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('start', 'Start:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_created', $task->date_created, array('class' => 'datepicker')) !!}
+                {!! Form::text('date_created', null, array('class' => 's datepicker')) !!}
                 {!! Form::label('end', 'End:', ['class' => 'control-label']) !!}
-                {!! Form::text('date_ended', $task->date_ended, array('class' => 'datepicker')) !!}
+                {!! Form::text('date_ended', null, array('class' => 'e datepicker')) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
                 <br>
-                {!! Form::textarea('description', $task->description ,['class' => 'form-control', 'size' => '50x5']) !!}
+                {!! Form::textarea('description', null ,['class' => 'd form-control', 'size' => '50x5']) !!}
             </div>
             {!! Form::submit('Update task', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
-            @endforeach
+            
             </div>
             <div class="b">
             {!! Form::open([

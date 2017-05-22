@@ -109,6 +109,7 @@ class ProjectsController extends Controller
 		        ->select('users.*')
 		        ->get();
 		$allUsers = DB::table('users')
+			->where('role', '=', 1)
 		        ->get();
 		$ids1 = $allUsers->pluck('id');
 		$ids2 = $users->pluck('id');
@@ -137,6 +138,7 @@ class ProjectsController extends Controller
 		        ->select('users.*')
 		        ->get();
 		$allUsers = DB::table('users')
+			->where('role', '=', 1)
 		        ->get();
 		$ids1 = $allUsers->pluck('id');
 		$ids2 = $users->pluck('id');
