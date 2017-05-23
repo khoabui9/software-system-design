@@ -18,20 +18,36 @@ use Session;
 
 class ProjectsController extends Controller
 {
-	public function show(){
+	public function show($sort='default'){
+		 if ($sort == 'date')
+		{
+			$ascDesc='desc';
+			$col='created_at';
+		} 
+		 else if ($sort == 'name')
+		{
+			$ascDesc='asc';
+			$col='name';
+		} 
+		 else
+	        {
+			$ascDesc='asc';
+			$col='project_id';
+		}
+		$projects =  DB::table('projects')->get();
 		$user = Auth::user();
 		$id = Auth::id();
 		if(Auth::check()) {
 		$role = $user->role;
 		if ($role == 2) {
-		 $projects = Project::all();
+		 $projects = Project::all()->orderBy($col,$ascDesc);
 		 return view('dashboard.projectsadmin')->with('projects', $projects);
 		}
 		else {
 		$query =  DB::table('user_project')
 		->select('projects.*')
 		->where('user_id', '=', $id)
-		->join('projects', 'projects.id', '=', 'user_project.project_id');
+		->join('projects', 'projects.id', '=', 'user_project.project_id')->orderBy($col,$ascDesc);
 		$projects = $query->get();
 		return view('dashboard.projects')->with('projects', $projects);
 		}
@@ -245,15 +261,8 @@ class ProjectsController extends Controller
 	}
 
 	public function sort() {
-		// $sortby = Input::get('sortby');
-		// if ($sortby == 'date')
-		//             $projects =  DB::table('projects')->orderBy('created_at','desc')->paginate(9);
-		// else if ($sortby == 'name')
-		//             $projects = DB::table('projects')->orderBy('name','asc')->paginate(9);
-		// else if ($sortby == 'default')
-		//             $projects =  DB::table('projects')->paginate(9);
-		
-		// return view('dashboard.projects')->with('projects', $projects);
-		//return response(view('dashboard.projects',array('projects'=>$projects)),200, ['Content-Type' => 'application/json']);
+		 $sortby = Input::get('sortby');
+		// echo "<script type='text/javascript'>alert('$sortby');</script>";
+		 return $this->show($sortby);
 	}	
 }
