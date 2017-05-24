@@ -117,11 +117,15 @@ class ProjectsController extends Controller
 		$taskss = DB::table('tasks')
 			 ->where('project_id', '=', $id)
 			 ->get();	
+		if ($taskss != null)
+			$check = true;
+		else
+			$check = false;
 		return view('show.project')->withProject($project)
 		        ->with('users', $users)
 		        ->with('restUsers', $restUsers)
-
-				->with('taskss',$taskss);
+			->with('check',$check)
+			->with('taskss',$taskss);
 		}
 		else {
 		   return redirect()->action('HomeController@index');
